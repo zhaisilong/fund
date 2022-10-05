@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'main.blg'
+[258] biber:340> INFO - === 三 10月  5, 2022, 20:35:30
+[309] Biber.pm:418> INFO - Reading 'main.bcf'
+[545] Biber.pm:969> INFO - Using all citekeys in bib section 0
+[563] Biber.pm:4383> INFO - Processing section 0
+[577] Biber.pm:4574> INFO - Looking for bibtex file 'reference.bib' for section 0
+[587] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[587] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[587] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[587] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[588] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[588] bbl.pm:757> INFO - Output to main.bbl
+[588] Biber.pm:130> WARN - Data source 'reference.bib' is empty, ignoring
+[588] Biber.pm:132> INFO - WARNINGS: 1
