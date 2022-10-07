@@ -9,7 +9,6 @@ import pandas as pd
 from plotnine import *
 from .plot import get_plot
 
-
 class Fee:
     def __init__(self):
         self.buy_fee_rate = 0.15 / 100
@@ -221,8 +220,16 @@ class Wallet:
         self.money.append(money)
 
 
+
 class Account:
     def __init__(self, fund, fee, wallet):
+        """账户
+
+        用于绑定基金,费用,钱包和操作
+        :param fund:
+        :param fee:
+        :param wallet:
+        """
         self.fund = fund
         self.wallet = wallet
         self.fee = fee
