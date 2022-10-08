@@ -42,6 +42,11 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple PyExecJS
 3. 引入 AI 时序预测
 4. 较为全面的投资策略, latex 成书
 
+### 2022-10-7
+
+- 加入日志系统
+- 数据库建模 1/3
+
 ### 2022-10-5
 
 - 能够爬取基金并分析相关的基金的信息.

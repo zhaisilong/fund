@@ -1,4 +1,4 @@
 codes: [ '007464', '161725', '501019', '470006', '320014', '470007', '010213', '160416', '000251', '519185','161724', '162719' ]
 fund_path: data/funds
-analysis_path: analysis
-track_path: track
+analysis_path: data/analysis
+trace_path: data/trace

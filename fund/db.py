@@ -28,6 +28,12 @@ class DB:
         self.df.drop(labels=idx, inplace=True)
         self.reset_index()
 
+    def __len__(self):
+        return len(self.df)
+
+    def __repr__(self):
+        return repr(self.df)
+
 
 class TraceDB(DB):
     def __init__(self, path: str):
@@ -64,5 +70,7 @@ if __name__ == "__main__":
     trace_db = TraceDB('../data/trace.csv')
     trace_item = TraceItem('2022-10-10', 'buy', 2000)
     trace_db.append(trace_item)
-    print(trace_db.df)
+    print(trace_db)
     trace_db.save()
+    fund_db = FundDB('../data/funds/万家精选混合A-519185.csv')
+    print(fund_db)

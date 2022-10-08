@@ -10,8 +10,6 @@ import requests
 import yaml
 from rich.logging import RichHandler
 
-from .db import FundDB
-
 
 def get_logger(name):
     """获取一个 Rich 美化的 Logger"""

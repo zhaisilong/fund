@@ -5,13 +5,9 @@ from fund import Fund, Wallet
 from pathlib import Path
 
 log = get_logger(__name__)
-def analysis(conf: dict):
-    path = conf['analysis_path']
-    codes = conf['codes']
-    for code in codes:
-        fund = Fund(code)
-        fund.analysis()  # 打印一些基金的统计数据
-        fund.show(parent=path)  # 输出图片
+log.setLevel(logging.INFO)
+
+
 
 
 # def track(conf: dict):
@@ -21,16 +17,12 @@ def analysis(conf: dict):
 #     pass
 
 
-def crawl(conf):
-    codes = conf['codes']
-    fund_path = conf['fund_path']
-    for code in codes:
-        get_fund(code, fund_path)
+
 
 def main(conf_path: str):
     log.info(f'导入配置: {conf_path}')
     conf = get_config(conf_path)
-    log.info('爬取信息')
+
     crawl(conf=conf)
     # 分析基金
     # analysis(conf=conf)
