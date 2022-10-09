@@ -1,2 +1,2 @@
-from .core import Fund
-from .db import FundDB
+from fund.core import Fund
+from fund.db import FundDB

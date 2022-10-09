@@ -1,10 +1,10 @@
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 from typing import Optional
 
 import pandas as pd
 from plotnine import *
 from pathlib import Path
-from db import FundDB, TraceDB
+from fund.db import FundDB, TraceDB
 
 
 class Fund:
@@ -139,7 +139,7 @@ class Pool:
             pop_stock = self._stock.pop(0)
             pop_date = self._date.pop(0)
             if pop_stock > request_stock:
-                self._stock.insert(0, pop_stock - pop_stock)
+                self._stock.insert(0, pop_stock - request_stock)
                 self._date.insert(0, pop_date)
                 acc_date.append(pop_date)
                 acc_stock.append(request_stock)
@@ -154,6 +154,10 @@ class Pool:
                 acc_stock.append(pop_stock)
 
         return acc_date, acc_stock
+
+    @property
+    def df(self):
+        return pd.DataFrame({'date': self._date, 'stock': self._stock})
 
 
 class Trace:
@@ -181,8 +185,12 @@ class Trace:
         return self.pool.stock
 
     @property
+    def latest_value_stock(self):
+        return self.fund.df['value'].tolist()[-1]
+
+    @property
     def value(self):
-        return self.fund.df['value'].tolist()[-1] * self.stock
+        return self.latest_value_stock * self.stock
 
     def _build(self) -> Pool:
         pool = Pool()
@@ -209,7 +217,7 @@ class Trace:
             return 0.5 / 100
         elif time_delta <= timedelta(days=729):
             return 0.25 / 100
-        elif time_delta <= timedelta(days=730):
+        else:
             return 0.
 
     def _get_value_stock(self, date: datetime):
@@ -244,11 +252,11 @@ class Trace:
                      geom_line(aes(x='date', y='value'), size=1, color='blue', data=df) +
                      geom_vline(xintercept=vline_day, colour=['red', 'orange', 'green'], size=1, data=df) +
                      geom_hline(yintercept=hline_value, colour=['black', 'pink'], size=2, data=df) +
-                     geom_point(aes(x=txt['x'], y=txt['y']), color='red', size=1) +
+                     geom_point(aes(x=txt['x'], y=txt['y']), color='green', size=2) +
                      geom_text(aes(label=txt['label'], x=txt['x'], y=txt['y']), color='black', size=14, ha='left',
                                va='top') +  # 从最新到最旧
-                     geom_point(aes(x=buys['date'], y=buys['value']), color='blue', size=2, shape='*') + # 这里买入的点
-                     geom_point(aes(x=sells['date'], y=sells['value']), color='green', size=2, shape='*') +  # 这里加入卖出的点
+                     geom_point(aes(x=buys['date'], y=buys['value']), color='black', size=2) +  # 这里买入的点
+                     geom_point(aes(x=sells['date'], y=sells['value']), color='red', size=2) +  # 这里加入卖出的点
                      scale_x_date(date_labels="%y-%m", date_breaks="3 month") +
                      xlab("Months") +
                      ylab("Values") +
@@ -260,23 +268,24 @@ class Trace:
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
         content = []
-        df = self.df.copy()
-        df['delta'] = df.value - df.value.shift(periods=1, fill_value=1.)  # 标签为增量
-        content.append('星期一到星期五的累计涨幅:\n')
-        df['week'] = df['date'].dt.dayofweek + 1
-        groups = df.groupby('week')
-        for week, group in groups:
-            content.append(f'{week}: {group["delta"].sum() * 100:.2f}%\n')
-        content.append('年份的累计涨幅:\n')
-        df['year'] = df['date'].dt.year
-        df['month'] = df['date'].dt.month
-        for year, group in df.groupby('year'):
-            content.append(f'{year}: {group["delta"].sum() * 100:.2f}%\n')
-
-        content.append('月的累计涨幅:\n')
-        for month, group in df.groupby('month'):
-            content.append(f'{month}: {group["delta"].sum() * 100:.2f}%\n')
-
+        content.append(f'投资总金额：{self.investment:.2f}元\n')
+        content.append(f'股份数：{self.stock:.2f}份\n')
+        content.append(f'当前每股单价：{self.latest_value_stock:.2f}元/份\n')
+        content.append(f'卖出收益(扣税后)：{self.gain:.2f}元\n')
+        content.append(f'基金价值：{self.value:.2f}元\n')
+        content.append(
+            f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(self.value + self.gain - self.investment) / self.investment * 100:.2f}%\n')
+        pool_pro = self.pool.df.copy()
+        today = datetime.strptime(str(date.today()), '%Y-%m-%d')
+        pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
+        pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
+        pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
+        pool_pro['improve/%'] = pool_pro.apply(
+            lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+        pd.set_option('display.max_rows', 999)
+        pd.set_option('precision', 2)
+        pd.set_option('expand_frame_repr', True)
+        content.append(f'池子:\n{repr(pool_pro)}\n')
         file = parent / f'{self.name}-{self.code}.txt'
         with file.open('w') as f:
             f.writelines(content)
@@ -295,8 +304,6 @@ class Trace:
         self._report(parent=report_path)
 
 
-
-
 if __name__ == '__main__':
     fund = Fund('../data/funds/万家精选混合A-519185.csv')
     print(fund)
@@ -304,8 +311,4 @@ if __name__ == '__main__':
     fund.show(parent='../data/analysis')
 
     trace = Trace('../data/trace/trace.csv', fund=fund)
-    print(trace.investment)
-    print(trace.stock)
-    print(trace.value)
-    print(trace.gain)
-    trace._plot(Path('.'))
+    trace.show(parent='../data/trace')
