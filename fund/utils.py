@@ -56,5 +56,5 @@ def get_fund(fscode: str, parent: str = '.'):
 def get_config(conf_path: str):
     # 基金分析
     with open(conf_path) as f:
-        conf = yaml.load(f)
+        conf = yaml.full_load(f)
     return conf

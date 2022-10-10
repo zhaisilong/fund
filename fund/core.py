@@ -5,7 +5,13 @@ import pandas as pd
 from plotnine import *
 from pathlib import Path
 from fund.db import FundDB, TraceDB
+import warnings
+warnings.filterwarnings('ignore')
 
+import matplotlib
+
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 class Fund:
     def __init__(self, path: str):

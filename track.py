@@ -1,13 +1,11 @@
 import logging
 from pathlib import Path
-import warnings
 
 from fund.utils import get_config, get_logger
 from fund.core import Trace, Fund
 
 log = get_logger(__name__)
 log.setLevel(logging.INFO)
-warnings.filterwarnings('ignore')
 
 
 def track(conf: dict):

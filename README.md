@@ -13,7 +13,8 @@ tags: [fund]
 ## 安装
 
 ```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple PyExecJS
+conda create -nfund python=3.9
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 ```
 
 ## 使用
@@ -125,6 +126,10 @@ python track.py
 ### 2022-9-21
 
 - 创建仓库,完成基本测试
+
+## Debugs
+
+- 中文字体修复: `bin/fix_matplotlib.py`
 
 ## 参考
 

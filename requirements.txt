@@ -1,0 +1,11 @@
+# Web
+PyExecJS
+requests
+
+# Data
+pandas
+plotnine
+pyyaml
+
+# Shell
+rich
