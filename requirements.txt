@@ -9,3 +9,13 @@ pyyaml
 
 # Shell
 rich
+
+# IDE
+jupyter
+ipykernel
+
+# Core
+kats[all]
+
+# others
+python-slugify

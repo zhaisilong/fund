@@ -6,12 +6,12 @@ from plotnine import *
 from pathlib import Path
 from fund.db import FundDB, TraceDB
 import warnings
-warnings.filterwarnings('ignore')
-
 import matplotlib
 
+warnings.filterwarnings('ignore')
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
 
 class Fund:
     def __init__(self, path: str):
@@ -243,15 +243,15 @@ class Trace:
         df.value.quantile([0.3, 0.7])
         hline_value = df.value.quantile([0.3, 0.7]).tolist()
         # 加入标签 每隔 1 个月
-        txt_df = df.iloc[::-20]
+        txt_df = df.iloc[::-20].reset_index(drop=True)
         txt = {'x': txt_df.date.tolist(), 'y': txt_df.value.tolist(),
                'label': txt_df.apply(lambda row: f'{row["delta_percent"]:.2f}%', axis=1).tolist()}
         # 加入买入卖出的点
         for operation, group in self.trace_db.df.groupby('operation'):
             if operation == 'buy':
-                buy_days = group['date']
+                buy_days = group['date'].tolist()
             if operation == 'sell':
-                sell_days = group['date']
+                sell_days = group['date'].tolist()
         buys = {'date': buy_days, 'value': [self._get_value_stock(day) for day in buy_days]}
         sells = {'date': sell_days, 'value': [self._get_value_stock(day) for day in sell_days]}
         base_plot = (ggplot() +
@@ -261,8 +261,8 @@ class Trace:
                      geom_point(aes(x=txt['x'], y=txt['y']), color='green', size=2) +
                      geom_text(aes(label=txt['label'], x=txt['x'], y=txt['y']), color='black', size=14, ha='left',
                                va='top') +  # 从最新到最旧
-                     geom_point(aes(x=buys['date'], y=buys['value']), color='black', size=2) +  # 这里买入的点
-                     geom_point(aes(x=sells['date'], y=sells['value']), color='red', size=2) +  # 这里加入卖出的点
+                     geom_point(aes(x=buys['date'], y=buys['value']), color='black', size=1) +  # 这里买入的点
+                     geom_point(aes(x=sells['date'], y=sells['value']), color='red', size=1) +  # 这里加入卖出的点
                      scale_x_date(date_labels="%y-%m", date_breaks="3 month") +
                      xlab("Months") +
                      ylab("Values") +
@@ -288,9 +288,6 @@ class Trace:
         pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
         pool_pro['improve/%'] = pool_pro.apply(
             lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
-        pd.set_option('display.max_rows', 999)
-        pd.set_option('precision', 2)
-        pd.set_option('expand_frame_repr', True)
         content.append(f'池子:\n{repr(pool_pro)}\n')
         file = parent / f'{self.name}-{self.code}.txt'
         with file.open('w') as f:

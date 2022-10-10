@@ -17,6 +17,8 @@ def analysis(conf: dict):
         fund.show(parent=analysis_path)  # 输出图片
 
 
+
+
 if __name__ == '__main__':
     conf = get_config('config.yml')
     log.info('分析基金...')

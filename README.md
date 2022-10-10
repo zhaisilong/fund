@@ -13,7 +13,9 @@ tags: [fund]
 ## 安装
 
 ```bash
-conda create -nfund python=3.9
+conda create -nfund python=3.8
+# 深度学习 pytorch 套装
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 ```
 
@@ -105,6 +107,12 @@ python track.py
 2. 基于强化学习的交易策略
 3. 引入 AI 时序预测
 4. 较为全面的投资策略, latex 成书
+
+### 2022-10-10
+
+- 尝试了 kats，出现了许多的 bug，因此放弃。
+- 转用 gitstar 15k 的 [prophet](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
+- 先学习一周 prophet
 
 ### 2022-10-9
 

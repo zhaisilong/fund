@@ -58,3 +58,4 @@ def get_config(conf_path: str):
     with open(conf_path) as f:
         conf = yaml.full_load(f)
     return conf
+
