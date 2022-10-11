@@ -9,6 +9,7 @@ class DB:
     def __init__(self, path: str):
         self.path = Path(path)
         self.df = self.load()
+        self.reset_index()  # 首次导入后都进行一次重置，保证程序运行
 
     def load(self):
         return pd.read_csv(self.path, parse_dates=['date'], index_col=0)

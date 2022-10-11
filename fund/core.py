@@ -5,12 +5,14 @@ import pandas as pd
 from plotnine import *
 from pathlib import Path
 from fund.db import FundDB, TraceDB
+from fund.utils import get_logger
 import warnings
 import matplotlib
 
 warnings.filterwarnings('ignore')
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+log = get_logger(__name__)
 
 
 class Fund:
@@ -18,6 +20,14 @@ class Fund:
         self.fund_db = FundDB(path)
         self.path = self.fund_db.path
         self.name, self.code = self._get_name()
+
+    @property
+    def latest_day(self):
+        return self.fund_db.df.date.tolist()[-1]
+
+    @property
+    def latest_value_stock(self):
+        return self.fund_db.df['value'].tolist()[-1]
 
     def _get_name(self):
         """从路径中获取名字和代码"""
@@ -192,7 +202,7 @@ class Trace:
 
     @property
     def latest_value_stock(self):
-        return self.fund.df['value'].tolist()[-1]
+        return self.fund.latest_value_stock
 
     @property
     def value(self):
@@ -202,6 +212,10 @@ class Trace:
         pool = Pool()
         for i, row in self.trace_db.df.iterrows():
             date = row['date']
+            if date > self.fund.latest_day:
+                log.info(f'最新一天尚未更新，请于工作日 15:00 后再试，此条记录将不纳入追踪')
+                self.trace_db.df.drop(index=i, inplace=True)  # 直接丢弃该行
+                continue
             value_stock = self._get_value_stock(date)  # float
             if row['operation'] == 'buy':
                 money = row['quantity']
@@ -214,6 +228,7 @@ class Trace:
                     time_delta = date - day
                     fee_rate = self._get_sell_fee_rate(time_delta)
                     self.gain += stock * value_stock * (1 - fee_rate)
+
         return pool
 
     def _get_sell_fee_rate(self, time_delta):
@@ -247,6 +262,8 @@ class Trace:
         txt = {'x': txt_df.date.tolist(), 'y': txt_df.value.tolist(),
                'label': txt_df.apply(lambda row: f'{row["delta_percent"]:.2f}%', axis=1).tolist()}
         # 加入买入卖出的点
+        buy_days = []  # 占位，防止为空的输入
+        sell_days = []
         for operation, group in self.trace_db.df.groupby('operation'):
             if operation == 'buy':
                 buy_days = group['date'].tolist()
@@ -273,25 +290,28 @@ class Trace:
 
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
-        content = []
-        content.append(f'投资总金额：{self.investment:.2f}元\n')
-        content.append(f'股份数：{self.stock:.2f}份\n')
-        content.append(f'当前每股单价：{self.latest_value_stock:.2f}元/份\n')
-        content.append(f'卖出收益(扣税后)：{self.gain:.2f}元\n')
-        content.append(f'基金价值：{self.value:.2f}元\n')
-        content.append(
-            f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(self.value + self.gain - self.investment) / self.investment * 100:.2f}%\n')
-        pool_pro = self.pool.df.copy()
-        today = datetime.strptime(str(date.today()), '%Y-%m-%d')
-        pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
-        pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
-        pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
-        pool_pro['improve/%'] = pool_pro.apply(
-            lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
-        content.append(f'池子:\n{repr(pool_pro)}\n')
-        file = parent / f'{self.name}-{self.code}.txt'
-        with file.open('w') as f:
-            f.writelines(content)
+        if self.investment:
+            content = list()
+            content.append(f'投资总金额：{self.investment:.2f}元\n')
+            content.append(f'股份数：{self.stock:.2f}份\n')
+            content.append(f'当前每股单价：{self.latest_value_stock:.2f}元/份\n')
+            content.append(f'卖出收益(扣税后)：{self.gain:.2f}元\n')
+            content.append(f'基金价值：{self.value:.2f}元\n')
+            content.append(
+                f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(self.value + self.gain - self.investment) / self.investment * 100:.2f}%\n')
+            pool_pro = self.pool.df.copy()
+            today = datetime.strptime(str(date.today()), '%Y-%m-%d')
+            pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
+            pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
+            pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
+            pool_pro['improve/%'] = pool_pro.apply(
+                lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+            content.append(f'池子:\n{repr(pool_pro)}\n')
+            file = parent / f'{self.name}-{self.code}.txt'
+            with file.open('w') as f:
+                f.writelines(content)
+        else:
+            log.warning(f"您还未做任何投资！请按格式填写{self.name}-{self.code}.csv")
 
     def show(self, parent: Optional[str]):
         if parent:

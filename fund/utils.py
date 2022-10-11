@@ -50,7 +50,7 @@ def get_fund(fscode: str, parent: str = '.'):
     net_worth_trend = jsContent.eval('Data_netWorthTrend')  # 单位净值走势
     pd.DataFrame({'date': [_x2date(day['x']) for day in net_worth_trend],
                   'value': [day['y'] for day in net_worth_trend]}).to_csv(fund_path)
-    log.info(f'信息写入: {fund_path}')
+    log.info(f'{_x2date(net_worth_trend[-1]["x"]).date()}: {name}-{code}')
 
 
 def get_config(conf_path: str):

@@ -11,9 +11,10 @@ log.setLevel(logging.INFO)
 def analysis(conf: dict):
     analysis_path = conf['analysis_path']
     fund_path = conf['fund_path']
+    log.info(f'Get Fund Images and Reports:')
     for fund_db_path in Path(fund_path).iterdir():
         fund = Fund(fund_db_path)
-        log.info(f'Get Fund Images and Reports for {fund_db_path}')
+        log.info(f'{fund.latest_day.date()}: {fund.name}-{fund.code}')
         fund.show(parent=analysis_path)  # 输出图片
 
 

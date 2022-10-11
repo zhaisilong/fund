@@ -13,8 +13,8 @@ def track(conf: dict):
     fund_path = conf['fund_path']
     for track in Path(track_path).iterdir():
         if track.is_file():
-            log.info(f"处理 {track}")
             fund = Fund(Path(fund_path) / track.name)
+            log.info(f"处理 {fund.latest_day.date()}: {fund.name}-{fund.code}")
             trace = Trace(track, fund)
             trace.show(track_path)
 
