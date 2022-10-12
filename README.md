@@ -4,6 +4,12 @@ date: 2022-9-21
 tags: [fund]
 ---
 
+<div align="center">
+  <a href="https://fund.readthedocs.io/zh_CN/latest/">
+  <img alt="Docs" src="https://img.shields.io/badge/doc-passed-brightgreen"/>
+  </a>
+</div>
+
 ## 前言
 
 - 基于 Python 的量化投资基金的仓库.
