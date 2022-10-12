@@ -213,7 +213,7 @@ class Trace:
         for i, row in self.trace_db.df.iterrows():
             date = row['date']
             if date > self.fund.latest_day:
-                log.info(f'最新一天尚未更新，请于工作日 15:00 后再试，此条记录将不纳入追踪')
+                log.info(f'最新一天尚未更新，请于明日数据更新后再试，此条记录将不纳入追踪。')
                 self.trace_db.df.drop(index=i, inplace=True)  # 直接丢弃该行
                 continue
             value_stock = self._get_value_stock(date)  # float
