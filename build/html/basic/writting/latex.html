@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latex 教程 &mdash; fund 0.0.6 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Basic" href="../ide/index.html" />
+    <link rel="prev" title="reStructuredText" href="restructuredtext.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> fund
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../awesome/index.html">Awesome</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Basic</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../config/index.html">配置</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">写作 =</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="md.html">Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="md.html#latex">Latex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="read_the_docs.html">Read The Docs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">reStructuredText</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Latex</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tutorial">Tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#links">Links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ide/index.html">IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../corp/index.html">合作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/index.html">风格</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fund</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Basic</a> &raquo;</li>
+          <li><a href="index.html">Basic</a> &raquo;</li>
+      <li>Latex 教程</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/basic/writting/latex.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="latex">
+<h1>Latex 教程<a class="headerlink" href="#latex" title="此标题的永久链接">¶</a></h1>
+<p>Latex 的学习并不简单，想要入门的朋友们要有心理准备。
+你可以看那些半小时入门 Latex 的书，但一定要仔仔细细阅读一本正统的书。
+他能帮助你解答很多疑惑，让你少走弯路。
+下面推介一个简单的入门路径。</p>
+<ol class="simple">
+<li><p>阅读各类关于 Latex 学习的帖子：初步了解 Latex。</p></li>
+<li><p>学习使用模板，一般官方正规的模板会有详细的模板使用指南，这就涉及到一些边边角角的知识了。推荐几个模板</p>
+<ol class="simple">
+<li><p>清华和浙大的毕业论文模板，可以在 GitHub 上找到</p></li>
+<li><p>ACS 期刊的模板</p></li>
+</ol>
+</li>
+<li><p>最后必须要回归正统，也就是读一些专业的，系统的书，这里推介一下刘海洋的 《Latex 入门》</p></li>
+</ol>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="此标题的永久链接">¶</a></h2>
+<section id="texlive">
+<h3>安装 texlive<a class="headerlink" href="#texlive" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install texlive-latex-base
+sudo apt-get install texlive-fonts-recommended
+sudo apt-get install texlive-fonts-extra
+sudo apt-get install texlive-latex-extra
+
+<span class="c1"># 或者简单一点</span>
+sudo apt-get install texlive-full
+
+<span class="c1"># 中文支持</span>
+sudo apt-get install texlive-lang-chinese
+sudo apt-get install texlive-xetex  <span class="c1"># 编译引擎</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>编译<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h3>
+<p>这里只展示 xetex 编译含有中文字符的文档。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>xelatex example.tex
+bibtex example.aux
+xelatex example.tex
+xelatex example.tex
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="此标题的永久链接">¶</a></h2>
+<p>空行不是必要的，但它可以让长的文档更易读。</p>
+<section id="id2">
+<h3>简单的例子<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\title</span><span class="nb">{</span>AI in Drug<span class="nb">}</span>
+<span class="k">\author</span><span class="nb">{</span>Zhai Silong<span class="nb">}</span>
+<span class="k">\date</span><span class="nb">{</span><span class="k">\today</span><span class="nb">}</span>
+<span class="k">\maketitle</span>
+
+<span class="k">\pagenumbering</span><span class="nb">{</span>roman<span class="nb">}</span>
+<span class="k">\tableofcontents</span>
+<span class="k">\newpage</span>
+<span class="k">\pagenumbering</span><span class="nb">{</span>arabic<span class="nb">}</span>
+
+hello, world
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>文档以及导言<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="na">[a4paper, 12pt]</span><span class="nb">{</span>article<span class="nb">}</span>
+</pre></div>
+</div>
+<p>article 文档类型适合较短的文章，比如期刊文章和短篇报告。
+report（适用于更长的多章节的文档，比如博士生论文）。
+proc（会议论文集）book 和 beamer。</p>
+<section id="id4">
+<h4>日期<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\data</span><span class="nb">{</span>November 2013<span class="nb">}</span>
+<span class="k">\date</span><span class="nb">{</span><span class="k">\today</span><span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h3>章节与段落<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\title</span><span class="nb">{</span>Hello World<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\maketitle</span>
+
+<span class="k">\section</span><span class="nb">{</span>Hello China<span class="nb">}</span> China is in East Asia.
+<span class="k">\subsection</span><span class="nb">{</span>Hello Beijing<span class="nb">}</span> Beijing is the capital of China.
+<span class="k">\subsubsection</span><span class="nb">{</span>Hello Dongcheng District<span class="nb">}</span>
+
+<span class="k">\paragraph</span><span class="nb">{</span>Tian&#39;anmen Square<span class="nb">}</span>is in the center of Beijing
+<span class="k">\subparagraph</span><span class="nb">{</span>Chairman Mao<span class="nb">}</span> is in the center of Tian&#39;anmen Square
+
+<span class="k">\subsection</span><span class="nb">{</span>Hello Guangzhou<span class="nb">}</span>
+<span class="k">\paragraph</span><span class="nb">{</span>Sun Yat-sen University<span class="nb">}</span> is the best university in Guangzhou.
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+<p>对于 <code class="docutils literal notranslate"><span class="pre">report</span></code> 和 <code class="docutils literal notranslate"><span class="pre">book</span></code> 类型的文档我们还支持 <code class="docutils literal notranslate"><span class="pre">\chapter{...}</span></code> 的命令</p>
+<section id="id6">
+<h4>段落缩进<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h4>
+<p>LaTeX 默认每个章节第一段首行顶格，之后的段落首行缩进。
+如果想要段落顶格，在要顶格的段落前加 <code class="docutils literal notranslate"><span class="pre">\noindent</span></code> 命令即可。
+如果希望全局所有段落都顶格，在文档的某一位置使用 <code class="docutils literal notranslate"><span class="pre">\setlength{\parindent}{0pt}</span></code> 命令，之后的所有段落都会顶格。</p>
+</section>
+<section id="id7">
+<h4>标签<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h4>
+<p>标签只能给章节创建，只能显示且无法链接</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\section</span><span class="nb">{</span>Methods<span class="nb">}</span>
+
+<span class="k">\subsection</span><span class="nb">{</span>Stage 1<span class="nb">}</span>
+<span class="k">\label</span><span class="nb">{</span>sec1<span class="nb">}</span>
+The first part of the methods.
+
+<span class="k">\ref</span><span class="nb">{</span>sec1<span class="nb">}</span>  <span class="c">% show labelname</span>
+<span class="k">\pageref</span><span class="nb">{</span>sec1<span class="nb">}</span>  <span class="c">% show page number</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h3>目录<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\tableofcontents</span>  <span class="c">% show words of Contents</span>
+<span class="k">\section</span><span class="nb">{</span>Hello China<span class="nb">}</span> China is in East Asia.
+<span class="k">\subsection</span><span class="nb">{</span>Hello Beijing<span class="nb">}</span> Beijing is the capital of China.
+<span class="k">\subsubsection</span><span class="nb">{</span>Hello Dongcheng District<span class="nb">}</span>
+<span class="k">\paragraph</span><span class="nb">{</span>Hello Tian&#39;anmen Square<span class="nb">}</span>is in the center of Beijing
+<span class="k">\subparagraph</span><span class="nb">{</span>Hello Chairman Mao<span class="nb">}</span> is in the center of Tian&#39;anmen Square
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>参考文献<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h3>
+<p>注意：参考文献有两个拓展的宏包，一个是 natbib 一个是 biblatex，他们是不兼容的。</p>
+<section id="bibtex">
+<h4>BibTeX 文件类型<a class="headerlink" href="#bibtex" title="此标题的永久链接">¶</a></h4>
+<p>文献类型（reference type)</p>
+<ul class="simple">
+<li><p>&#64;article</p></li>
+<li><p>&#64;book</p></li>
+<li><p>&#64;incollection: 表示一个章节</p></li>
+<li><p>&#64;inproceedings: 会议论文</p></li>
+</ul>
+<p>不引包，简单地插入文献列表。</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\bibliographystyle</span><span class="nb">{</span>plain<span class="nb">}</span>
+<span class="k">\bibliography</span><span class="nb">{</span>references<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4>参考文献标注<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h4>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">\cite{citationkey}</span></code> 来在你想要引用文献的地方插入一个标注。
+如果你不希望在正文中插入一个引用标注，但仍想要在文献列表中显示这次引用，使用 <code class="docutils literal notranslate"><span class="pre">\nocite{citationkey}</span></code> 命令。
+想要在引用中插入页码信息，使用方括号：<code class="docutils literal notranslate"><span class="pre">\cite[p.</span> <span class="pre">215]{citationkay}</span></code>
+要引用多个文献，使用逗号分隔：<code class="docutils literal notranslate"><span class="pre">\cite{citation01,citation02,citation03}</span></code></p>
+</section>
+<section id="id11">
+<h4>引用格式<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h4>
+<p>Plain 方括号包裹数字的形式，如 <code class="docutils literal notranslate"><span class="pre">[1]</span></code>。文献列表按照第一作者的字母表顺序排列。每一个作者的名字是全称。
+Abbrv 与 plain 是相同的，但作者的名字是缩写。
+Unsrt 与 plain 是相同的，但文献列表的排序按照在文中引用的先后顺序排列。
+Alpha 与 plain 一样，但引用的标注是作者的名字与年份组合在一起，不是数字，如 [Kop10]。</p>
+</section>
+</section>
+<section id="id12">
+<h3>注释和空格<a class="headerlink" href="#id12" title="此标题的永久链接">¶</a></h3>
+<p>% 代表评论，之后同一行的字都不会被输出
+通常来说，LaTeX 忽略空行和其他空白字符，两个反斜杠（<code class="docutils literal notranslate"><span class="pre">\\</span></code>）可以被用来换行。
+如果你想要在你的文档中添加空格，你可以使用 <code class="docutils literal notranslate"><span class="pre">\vaspace{...}</span></code> 的命令。
+如 <code class="docutils literal notranslate"><span class="pre">\vspace{12pt}</span></code> 会产生一个空格，高度等于 12pt 的文字的高度。</p>
+</section>
+<section id="id13">
+<h3>特殊字符<a class="headerlink" href="#id13" title="此标题的永久链接">¶</a></h3>
+<p>下列字符在 LaTeX 中属于特殊字符，可以用 <code class="docutils literal notranslate"><span class="pre">\</span></code> 进行转义：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># $ % ^ &amp; _ { } ~ \
+</pre></div>
+</div>
+<p>反斜杠不能通过反斜杠转义（换行），使用 \textbackslash 命令代替。</p>
+</section>
+<section id="id14">
+<h3>字体<a class="headerlink" href="#id14" title="此标题的永久链接">¶</a></h3>
+<section id="id15">
+<h4>中文支持<a class="headerlink" href="#id15" title="此标题的永久链接">¶</a></h4>
+<p>推荐方法：改变布局和文中字</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% UTF8 可带可不带</span>
+<span class="k">\documentclass</span><span class="na">[UTF8]</span><span class="nb">{</span>ctexart<span class="nb">}</span>
+</pre></div>
+</div>
+<p>或者</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="na">[UTF8]</span><span class="nb">{</span>ctex<span class="nb">}</span>
+</pre></div>
+</div>
+<p>其他方法：不改变布局，只显示中文文字</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>xeCJK<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+hello,你好
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h4>字体效果<a class="headerlink" href="#id16" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\textit</span><span class="nb">{</span>words in italics<span class="nb">}</span>
+<span class="k">\textsl</span><span class="nb">{</span>words slanted<span class="nb">}</span>
+<span class="k">\textsc</span><span class="nb">{</span>words in smallcaps<span class="nb">}</span>
+<span class="k">\textbf</span><span class="nb">{</span>words in bold<span class="nb">}</span>
+<span class="k">\texttt</span><span class="nb">{</span>words in teletype<span class="nb">}</span>
+<span class="k">\textsf</span><span class="nb">{</span>sans serif words<span class="nb">}</span>
+<span class="k">\textrm</span><span class="nb">{</span>roman words<span class="nb">}</span>
+<span class="k">\underline</span><span class="nb">{</span>underlined words<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h4>彩色字体<a class="headerlink" href="#id17" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
+<span class="c">% green red blue cyan magenta yellow white</span>
+<span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>colorname<span class="nb">}</span>text<span class="nb">}</span>
+<span class="k">\colorbox</span><span class="nb">{</span>colorname<span class="nb">}{</span>text<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h4>字体大小<a class="headerlink" href="#id18" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>normal size words
+<span class="nb">{</span><span class="k">\tiny</span> tiny words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\scriptsize</span> scriptsize words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\footnotesize</span> footnotesize words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\small</span> small words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\large</span> large words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\Large</span> Large words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\LARGE</span> LARGE words<span class="nb">}</span>
+<span class="nb">{</span><span class="k">\huge</span> huge words<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id19">
+<h3>列表与表格<a class="headerlink" href="#id19" title="此标题的永久链接">¶</a></h3>
+<p>LaTeX 支持两种类型的列表：有序列表（enumerate）和无序列表（itemize）。</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>enumerate<span class="nb">}</span>
+<span class="k">\item</span> First thing
+<span class="k">\item</span> Second thing
+<span class="k">\begin</span><span class="nb">{</span>itemize<span class="nb">}</span>
+<span class="k">\item</span> A sub-thing
+<span class="k">\item</span> Another sub-thing
+<span class="k">\end</span><span class="nb">{</span>itemize<span class="nb">}</span>
+<span class="k">\item</span> Third thing
+<span class="k">\end</span><span class="nb">{</span>enumerate<span class="nb">}</span>
+
+<span class="c">% 修改头</span>
+<span class="k">\begin</span><span class="nb">{</span>itemize<span class="nb">}</span>
+<span class="k">\item</span><span class="na">[+]</span> A sub-thing
+<span class="k">\item</span><span class="na">[-]</span> Another sub-thing
+<span class="k">\end</span><span class="nb">{</span>itemize<span class="nb">}</span>
+</pre></div>
+</div>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>The Number of Iterations<span class="nb">}</span>
+<span class="k">\centering</span> 
+<span class="c">% Each element in the tabular is left aligned</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>l l<span class="nb">}</span>  <span class="c">% fist and second line aligned to left</span>
+<span class="k">\hline</span>
+iter1 <span class="nb">&amp;</span> iter2  <span class="k">\\</span>
+<span class="k">\hline</span>
+31 <span class="nb">&amp;</span> 25  <span class="k">\\</span>
+20 <span class="nb">&amp;</span> 17  <span class="k">\\</span>
+45 <span class="nb">&amp;</span> 37  <span class="k">\\</span>
+23 <span class="nb">&amp;</span> 19  <span class="k">\\</span>
+<span class="k">\hline</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</pre></div>
+</div>
+<p>表格（tabular）命令用于排版表格。LaTeX 默认表格是没有横向和竖向的分割线的——如果你需要，你得手动设定。LaTeX 会根据内容自动设置表格的宽度。l 表示一个左对齐的列.r 表示一个右对齐的列.c 表示一个向中对齐的列.| 表示一个列的竖线.
+&amp; 用于分割列.<code class="docutils literal notranslate"><span class="pre">\\</span></code> 用于换行.<code class="docutils literal notranslate"><span class="pre">\hline</span></code> 表示插入一个贯穿所有列的横着的分割线.<code class="docutils literal notranslate"><span class="pre">\cline{1-2}</span></code> 会在第一列和第二列插入一个横着的分割线</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|l|l|<span class="nb">}</span>
+Apples <span class="nb">&amp;</span> Green <span class="k">\\</span>
+Strawberries <span class="nb">&amp;</span> Red <span class="k">\\</span>
+Orange <span class="nb">&amp;</span> Orange<span class="k">\\</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>rc<span class="nb">}</span>
+Apples <span class="nb">&amp;</span> Green<span class="k">\\</span>
+<span class="k">\hline</span> 
+Strawberries <span class="nb">&amp;</span> Red <span class="k">\\</span>
+<span class="k">\cline</span><span class="nb">{</span>1-1<span class="nb">}</span>
+Oranges <span class="nb">&amp;</span> Orange <span class="k">\\</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|r|l|<span class="nb">}</span>
+<span class="k">\hline</span>
+8 <span class="nb">&amp;</span> here&#39;s <span class="k">\\</span>
+<span class="k">\cline</span><span class="nb">{</span>2-2<span class="nb">}</span>
+86 <span class="nb">&amp;</span> stuff<span class="k">\\</span>
+<span class="k">\hline</span> <span class="k">\hline</span> 
+2008 <span class="nb">&amp;</span> now <span class="k">\\</span>
+<span class="k">\hline</span> 
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h3>符号和公式<a class="headerlink" href="#id20" title="此标题的永久链接">¶</a></h3>
+<p>数学公式, 希腊字母，以及特殊符号都需要在数学环境中使用。
+如果是在同一行，使用<code class="docutils literal notranslate"><span class="pre">$表达式$</span></code>。 如果是另起一行, 使用<code class="docutils literal notranslate"><span class="pre">\[表达式\]</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">$$表达式$$</span></code>。</p>
+<section id="id21">
+<h4>矩阵<a class="headerlink" href="#id21" title="此标题的永久链接">¶</a></h4>
+<p>矩阵需要使用 package amsmath。
+<code class="docutils literal notranslate"><span class="pre">$$</span></code> 之内不能有空行。</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>amsmath<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="sb">$$</span><span class="nb"></span>
+<span class="nv">\begin</span><span class="nb">{bmatrix}  </span><span class="c">% bracket []</span>
+<span class="m">0</span><span class="nb"> &amp; </span><span class="m">0</span><span class="nb"> &amp; </span><span class="m">1</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="m">1</span><span class="nb"> &amp; </span><span class="m">0</span><span class="nb"> &amp; </span><span class="m">0</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="nv">\end</span><span class="nb">{bmatrix}</span>
+<span class="nv">\begin</span><span class="nb">{pmatrix}  </span><span class="c">% parentheses ()</span>
+<span class="m">1</span><span class="nb"> &amp; </span><span class="m">4</span><span class="nb"> &amp; </span><span class="m">0</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="m">2</span><span class="nb"> &amp; </span><span class="m">5</span><span class="nb"> &amp; </span><span class="m">8</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="nv">\end</span><span class="nb">{pmatrix}</span>
+<span class="nv">\begin</span><span class="nb">{vmatrix}  $ vertical ||</span>
+<span class="m">1</span><span class="nb"> &amp; </span><span class="m">4</span><span class="nb"> &amp; </span><span class="m">0</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="m">2</span><span class="nb"> &amp; </span><span class="m">5</span><span class="nb"> &amp; </span><span class="m">8</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+<span class="nv">\end</span><span class="nb">{vmatrix}</span>
+<span class="s">$$</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h4>公式对齐<a class="headerlink" href="#id22" title="此标题的永久链接">¶</a></h4>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>align<span class="nb">}</span>
+53(4+x)+2x <span class="nb">&amp;</span>= 212 + 53x + 2x <span class="k">\\</span> 
+<span class="nb">&amp;</span>= 212 + 55x  
+<span class="k">\end</span><span class="nb">{</span>align<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id23">
+<h3>插图<a class="headerlink" href="#id23" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
+<span class="k">\includegraphics</span><span class="na">[scale=.5]</span><span class="nb">{</span>tmp.png<span class="nb">}</span>
+<span class="k">\caption</span><span class="nb">{</span>fig: tmp<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+</pre></div>
+</div>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% others</span>
+<span class="k">\includegraphics</span><span class="na">[width=4.00in,height=3.00in]</span><span class="nb">{</span>figure1.eps<span class="nb">}</span>
+</pre></div>
+</div>
+</section>
+<section id="markdown-latex">
+<h3>Markdown 与 Latex<a class="headerlink" href="#markdown-latex" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/">以 Markdown 撰写文稿，以 LaTeX 排版 </a></p></li>
+</ul>
+<p>使用 markdown + pycharm 命令要带 <code class="docutils literal notranslate"><span class="pre">--shell-escape</span></code></p>
+</section>
+<section id="id24">
+<h3>latex 模板推荐<a class="headerlink" href="#id24" title="此标题的永久链接">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ElegantLaTeX">优雅： 书 论文 还有笔记</a></p></li>
+<li><p><a class="reference external" href="https://coder.social/ElegantLaTeX/ElegantPaper">ElegantPaper</a></p></li>
+<li><p><a class="reference external" href="https://github.com/tuna/thuthesis/">清华论文 Latex 模板</a></p></li>
+</ul>
+</section>
+</section>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zilutian.github.io/latex-tutorial-chinese/">LATEX 教程</a></p></li>
+<li><p><a class="reference external" href="https://oi-wiki.org/tools/latex/">LaTeX 入门</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="restructuredtext.html" class="btn btn-neutral float-left" title="reStructuredText" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ide/index.html" class="btn btn-neutral float-right" title="Basic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Zhai Silong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

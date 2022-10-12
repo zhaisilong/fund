@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markdown &mdash; fund 0.0.6 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Read The Docs" href="read_the_docs.html" />
+    <link rel="prev" title="Basic" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> fund
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../awesome/index.html">Awesome</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Basic</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../config/index.html">配置</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">写作 =</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Markdown</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gfm">GFM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#latex">Latex</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">展示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">插入公式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">上下标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">括号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">分段函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">运算表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">希腊字母</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">运算符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">箭头</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">向量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">其他</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">源码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="read_the_docs.html">Read The Docs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">reStructuredText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="latex.html">Latex</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ide/index.html">IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../corp/index.html">合作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/index.html">风格</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fund</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Basic</a> &raquo;</li>
+          <li><a href="index.html">Basic</a> &raquo;</li>
+      <li>Markdown</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/basic/writting/md.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="markdown">
+<h1>Markdown<a class="headerlink" href="#markdown" title="此标题的永久链接">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhaisilong.com/index.php/archives/markdown.html">Markdown
+教程</a></p></li>
+</ul>
+<section id="gfm">
+<h2>GFM<a class="headerlink" href="#gfm" title="此标题的永久链接">¶</a></h2>
+<p>GitHub Flavored Markdown</p>
+<p>GitHub 在 Markdown 的基础上引入了一些新特性</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>删除
+<span class="gd">~~我是被删除的内容~~</span>
+
+自动链接
+在 GFM 中只要是合法的 HTTP 网址就可以自动被解析成一个有效的链接，可以省略标准 Markdown 中的尖括号（&lt;&gt;）
+我的博客是 https://zhaisilong.com
+
+任务列表
+<span class="k">- [ ]</span> 待办事项1
+<span class="k">- [ ]</span> 待办事项2
+<span class="k">- [x]</span> 待办事项3
+<span class="k">- [x]</span> 待办事项4
+
+表格
+姓名 | 年龄 | 性别
+----|-----|----
+小明 | 18 | 男
+小刚 | 29 | 女
+李三 | 20 | 男
+
+Emoji表情支持
+:grinning:
+:heart_eyes:
+:speech_balloon:
+:peach:
+![](https://cdn.jsdelivr.net/gh/xxzhai123/img/imgv2-6c8c3b801b1e79cafa0a8642b430e271_720w.jpg)
+![](https://cdn.jsdelivr.net/gh/xxzhai123/img/imgv2-6d6b1fe9e1ba08a7191fbf3e64617ae8_r.jpg)
+
+禁止了一些特殊的原生HTML标签
+GFM 中会对这些特殊标签的左尖号 <span class="sb">`&lt;`</span> 进行转义成 <span class="sb">`&amp;lt;`</span>，从而让这些标签不起作用。
+
+单词内部的下划线
+在 GFM 语法中会忽略掉单词内部的下划线
+为了避免混淆，尽量不要去使用下划线尽量去使用`*`
+
++ 你好
+<span class="k">-</span> 你不好
+</pre></div>
+</div>
+</section>
+</section>
+<section id="latex">
+<h1>Latex<a class="headerlink" href="#latex" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>展示<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\quad\)</span> 空格</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{if n is odd}\)</span> 文本</p></li>
+</ol>
+<p>3. <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 错位的对齐制表符
+4.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}f(n) =
+\begin{cases}
+ 2n,  &amp; \text{if $n$ is even} \\\\
+ 3n, &amp; \text{if $n$ is odd}
+\end{cases}\end{split}\]</div>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p><span class="math notranslate nohighlight">\(\sim\)</span></p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>插入公式<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<section id="id3">
+<h3>行内公式<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(y=x+1\)</span></p>
+</div></blockquote>
+</section>
+<section id="id4">
+<h3>独立公式<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[y=x+1\]</div>
+</div></blockquote>
+</section>
+</section>
+<section id="id5">
+<h2>上下标<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[x^{y^z}=(1+e_1)^{xy^w}\]</div>
+</section>
+<section id="id6">
+<h2>括号<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">(</span></code>、<code class="docutils literal notranslate"><span class="pre">)</span></code>、<code class="docutils literal notranslate"><span class="pre">[</span></code>、<code class="docutils literal notranslate"><span class="pre">]</span></code> 和 <code class="docutils literal notranslate"><span class="pre">|</span></code> 表示符号本身，使用
+<code class="docutils literal notranslate"><span class="pre">\\{</span></code>来表示 <code class="docutils literal notranslate"><span class="pre">{</span></code>，<code class="docutils literal notranslate"><span class="pre">\\}</span></code> 来表示 <code class="docutils literal notranslate"><span class="pre">}</span></code></p>
+<div class="math notranslate nohighlight">
+\[{f}'(x) = ( \frac{df}{dx} )\]</div>
+<p>通过将 right与`)
+结合使用，可以将括号大小随着其内容变化。其他括号同理。</p>
+<div class="math notranslate nohighlight">
+\[{f}'(x) = \left( \frac{df}{dx} \right)\]</div>
+<div class="math notranslate nohighlight">
+\[{f}'(0)=\left.\frac{df}{dx}\right|\_{x=0}\]</div>
+</section>
+<section id="id7">
+<h2>分段函数<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(n) =
+\begin{cases}
+2n,  &amp; \text{if $n$ is even} \\\\
+3n, &amp; \text{if $n$ is odd}
+\end{cases}\end{split}\]</div>
+</section>
+<section id="id8">
+<h2>运算表达式<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<section id="id9">
+<h3>分数<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\frac{a}{b}\]</div>
+</section>
+<section id="id10">
+<h3>根号<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\sqrt[a]{b}\]</div>
+</section>
+<section id="id11">
+<h3>求和<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\sum_{a}^{b}\]</div>
+<div class="math notranslate nohighlight">
+\[\prod_{a}^{b}\]</div>
+</section>
+<section id="id12">
+<h3>省略号<a class="headerlink" href="#id12" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[{a+}\ldots{+b}\]</div>
+<div class="math notranslate nohighlight">
+\[{a+}\cdots{+b}\]</div>
+</section>
+<section id="id13">
+<h3>极限<a class="headerlink" href="#id13" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[lim_{{a} \to {\infty}}\]</div>
+</section>
+<section id="id14">
+<h3>求导<a class="headerlink" href="#id14" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[{f}'(x)\]</div>
+</section>
+<section id="id15">
+<h3>积分<a class="headerlink" href="#id15" title="此标题的永久链接">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\int_{a}^{b}{x}\,dx\]</div>
+</section>
+</section>
+<section id="id16">
+<h2>希腊字母<a class="headerlink" href="#id16" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span></p></li>
+</ol>
+</section>
+<section id="id17">
+<h2>运算符<a class="headerlink" href="#id17" title="此标题的永久链接">¶</a></h2>
+<section id="id18">
+<h3>二元运算符<a class="headerlink" href="#id18" title="此标题的永久链接">¶</a></h3>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(+\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ast\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(-\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\times\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\div\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pm\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mp\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\setminus\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\approx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\odot\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\geq\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\leq\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\%\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\neq\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(30^\circ\)</span></p></li>
+</ol>
+</section>
+<section id="id19">
+<h3>对数运算符<a class="headerlink" href="#id19" title="此标题的永久链接">¶</a></h3>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\log\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\lg\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ln\)</span></p></li>
+</ol>
+</section>
+<section id="id20">
+<h3>逻辑运算符<a class="headerlink" href="#id20" title="此标题的永久链接">¶</a></h3>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\because\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\therefore\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\exists\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\not\subset\)</span></p></li>
+</ol>
+</section>
+</section>
+<section id="id21">
+<h2>箭头<a class="headerlink" href="#id21" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\Leftarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Longleftarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Rightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Longrightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Longleftrightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\leftarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\longleftarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\rightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\longrightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\longleftrightarrow\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\iff\)</span></p></li>
+</ol>
+</section>
+<section id="id22">
+<h2>向量<a class="headerlink" href="#id22" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{x}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overrightarrow{AB}\)</span></p></li>
+</ol>
+</section>
+<section id="id23">
+<h2>其他<a class="headerlink" href="#id23" title="此标题的永久链接">¶</a></h2>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\quad\)</span> 空格</p></li>
+<li><p><span class="math notranslate nohighlight">\(\qquad\)</span> 两个空格</p></li>
+<li><p><span class="math notranslate nohighlight">\(\diamondsuit\)</span> 表重要</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dots\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\emptyset\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bot\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\top\)</span></p></li>
+</ol>
+</section>
+<section id="id24">
+<h2>源码<a class="headerlink" href="#id24" title="此标题的永久链接">¶</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">1.</span> $\quad$ 空格
+<span class="k">2.</span> $\text{if n is odd}$ 文本
+<span class="k">3.</span> <span class="sb">`&amp;`</span> 错位的对齐制表符
+<span class="k">4.</span> $$
+   f(n) =
+   \begin{cases}
+    2n,  &amp; \text{if $n$ is even} \\\\
+    3n, &amp; \text{if $n$ is odd}
+   \end{cases}
+   $$
+<span class="k">5.</span> $\sim$
+
+<span class="gu">## 插入公式</span>
+
+<span class="gu">### 行内公式</span>
+
+<span class="k">&gt; </span><span class="ge">$y=x+1$</span>
+
+<span class="gu">### 独立公式</span>
+
+<span class="k">&gt; </span><span class="ge">$$y=x+1$$</span>
+
+<span class="gu">## 上下标</span>
+
+$$ x^{y^z}=(1+e_1)^{xy^w} $$
+
+<span class="gu">## 括号</span>
+
+<span class="sb">`(`</span>、<span class="sb">`)`</span>、<span class="sb">`[`</span>、<span class="sb">`]`</span> 和 <span class="sb">`|`</span> 表示符号本身，使用 <span class="sb">`\\{`</span>来表示 <span class="sb">`{`</span>，<span class="sb">`\\}`</span> 来表示 <span class="sb">`}`</span>
+$$ {f}&#39;(x) = ( \frac{df}{dx} ) $$
+通过将 \left与( ,\right与) 结合使用，可以将括号大小随着其内容变化。其他括号同理。
+$$ {f}&#39;(x) = \left( \frac{df}{dx} \right) $$
+
+$$ {f}&#39;(0)=\left.\frac{df}{dx}\right|\_{x=0} $$
+
+<span class="gu">## 分段函数</span>
+
+$$
+f(n) =
+\begin{cases}
+2n,  &amp; \text{if $n$ is even} \\\\
+3n, &amp; \text{if $n$ is odd}
+\end{cases}
+$$
+
+<span class="gu">## 运算表达式</span>
+
+<span class="gu">### 分数</span>
+
+$$\frac{a}{b}$$
+
+<span class="gu">### 根号</span>
+
+$$\sqrt[a]{b}$$
+
+<span class="gu">### 求和</span>
+
+$$\sum_{a}^{b}$$
+
+$$\prod_{a}^{b}$$
+
+<span class="gu">### 省略号</span>
+
+$${a+}\ldots{+b}$$
+$${a+}\cdots{+b}$$
+
+<span class="gu">### 极限</span>
+
+$$lim_{{a} \to {\infty}}$$
+
+<span class="gu">### 求导</span>
+
+$${f}&#39;(x)$$
+
+<span class="gu">### 积分</span>
+
+$$\int_{a}^{b}{x}\,dx$$
+
+<span class="gu">## 希腊字母</span>
+
+<span class="k">1.</span> $\alpha$
+<span class="k">2.</span> $\beta$
+<span class="k">3.</span> $\epsilon$
+
+<span class="gu">## 运算符</span>
+
+<span class="gu">### 二元运算符</span>
+
+<span class="k">1.</span> $+$
+<span class="k">2.</span> $\ast$
+<span class="k">3.</span> $-$
+<span class="k">4.</span> $\times$
+<span class="k">5.</span> $\div$
+<span class="k">6.</span> $\pm$
+<span class="k">7.</span> $\mp$
+<span class="k">8.</span> $\setminus$
+<span class="k">9.</span> $\approx$
+<span class="k">10.</span> $\odot$
+<span class="k">11.</span> $\geq$
+<span class="k">12.</span> $\leq$
+<span class="k">13.</span> $\%$
+<span class="k">14.</span> $\neq$
+<span class="k">15.</span> $30^\circ$
+
+<span class="gu">### 对数运算符</span>
+
+<span class="k">1.</span> $\log$
+<span class="k">2.</span> $\lg$
+<span class="k">3.</span> $\ln$
+
+<span class="gu">### 逻辑运算符</span>
+
+<span class="k">1.</span> $\because$
+<span class="k">2.</span> $\therefore$
+<span class="k">3.</span> $\forall$
+<span class="k">4.</span> $\exists$
+<span class="k">5.</span> $\not\subset$
+
+<span class="gu">## 箭头</span>
+
+<span class="k">1.</span> $\Leftarrow$
+<span class="k">2.</span> $\Longleftarrow$
+<span class="k">3.</span> $\Rightarrow$
+<span class="k">4.</span> $\Longrightarrow$
+<span class="k">5.</span> $\Longleftrightarrow$
+<span class="k">6.</span> $\leftarrow$
+<span class="k">7.</span> $\longleftarrow$
+<span class="k">8.</span> $\rightarrow$
+<span class="k">9.</span> $\longrightarrow$
+<span class="k">10.</span> $\longleftrightarrow$
+<span class="k">11.</span> $\iff$
+
+<span class="gu">## 向量</span>
+
+<span class="k">1.</span> $\boldsymbol{x}$
+<span class="k">2.</span> $\mathbf{x}$
+<span class="k">3.</span> $\vec{x}$
+<span class="k">4.</span> $x$
+<span class="k">5.</span> $\overrightarrow{AB}$
+
+<span class="gu">## 其他</span>
+
+<span class="k">1.</span> $\quad$ 空格
+<span class="k">2.</span> $\qquad$ 两个空格
+<span class="k">3.</span> $\diamondsuit$ 表重要
+<span class="k">4.</span> $\dots$
+<span class="k">5.</span> $\emptyset$
+<span class="k">6.</span> $\bot$
+<span class="k">7.</span> $\top$
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Basic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="read_the_docs.html" class="btn btn-neutral float-right" title="Read The Docs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Zhai Silong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

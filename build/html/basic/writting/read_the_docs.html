@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read The Docs &mdash; fund 0.0.6 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="reStructuredText" href="restructuredtext.html" />
+    <link rel="prev" title="Markdown" href="md.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> fund
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../awesome/index.html">Awesome</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Basic</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../config/index.html">配置</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">写作 =</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="md.html">Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="md.html#latex">Latex</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Read The Docs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sphinx">Sphinx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#markdown-to-restructuredtext-with-pandoc">Markdown to reStructuredText with Pandoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#faq">FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">reStructuredText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="latex.html">Latex</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ide/index.html">IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../corp/index.html">合作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/index.html">风格</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fund</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Basic</a> &raquo;</li>
+          <li><a href="index.html">Basic</a> &raquo;</li>
+      <li>Read The Docs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/basic/writting/read_the_docs.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="read-the-docs">
+<h1>Read The Docs<a class="headerlink" href="#read-the-docs" title="此标题的永久链接">¶</a></h1>
+<section id="sphinx">
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="此标题的永久链接">¶</a></h2>
+<p>Sphinx 是一个基于 Python 的文档生成项目，最早只是用来生成 Python 官方文档，随着工具的完善， 越来越多的知名的项目也用他来生成文档，甚至完全可以用他来写书采用 <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> 作为文档写作语言, 不过也可以通过模块支持其他格式，待会我会介绍怎样支持<code class="docutils literal notranslate"><span class="pre">MarkDown</span></code>格式。</p>
+<p>Sphinx 提供的 <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">documentation</span></code> 生成器称为 <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sphinx sphinx-autobuild sphinx_rtd_theme
+<span class="nb">cd</span> path_to_your_repo
+sphinx-quickstart
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Separate <span class="nb">source</span> and build directories <span class="o">(</span>y/n<span class="o">)</span> <span class="o">[</span>n<span class="o">]</span>:y  
+Project name: scrapy-cookbook  
+Author name<span class="o">(</span>s<span class="o">)</span>: Xiong Neng  
+Project version <span class="o">[]</span>: <span class="m">0</span>.2  
+Project release <span class="o">[</span><span class="m">1</span>.0<span class="o">]</span>: <span class="m">0</span>.2.2  
+Project language <span class="o">[</span>en<span class="o">]</span>: zh_CN
+</pre></div>
+</div>
+<p>编译以及本地服务器托管</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make html
+<span class="nb">cd</span> build/html
+python3 -m http.server <span class="m">8000</span>
+<span class="c1"># 清除编译输出，会删除 build 下的文件</span>
+make clean
+<span class="c1"># 重新编译</span>
+make html
+</pre></div>
+</div>
+<section id="conf-py">
+<h3>使用主题修改 <code class="docutils literal notranslate"><span class="pre">conf.py</span></code><a class="headerlink" href="#conf-py" title="此标题的永久链接">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>运行构建<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h3>
+<p><em>-b</em> 选择了生成器，Sphinx 将会生成 HTML 格式</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build -b html sourcedir builddir
+</pre></div>
+</div>
+<p>因为 <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> 生成了 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 和 <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> 文件，这些文件能够减少不少工作：有了它们你就可以运行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+</section>
+<section id="sphinx-markdown">
+<h3>配置 Sphinx 项目以获得 Markdown 支持<a class="headerlink" href="#sphinx-markdown" title="此标题的永久链接">¶</a></h3>
+<p><a class="reference external" href="https://recommonmark.readthedocs.io/en/latest/index.html">recommonmark — Recommonmark 0.7.1 documentation</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install recommonmark
+<span class="c1"># 然后修改 conf.py</span>
+<span class="nv">extensions</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;recommonmark&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>支持 markdown 的表格，表格在本地可行但是无法<strong>托管到 Read the docs 上</strong>。因此，这里推介大家学一下 reStructure</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sphinx-markdown-tables
+<span class="c1"># 然后修改 conf.py</span>
+<span class="nv">extensions</span> <span class="o">=</span> <span class="o">[</span>
+<span class="s1">&#39;sphinx_markdown_tables&#39;</span>,
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>目前不支持 markdown 的数学公式</p>
+</section>
+</section>
+<section id="markdown-to-restructuredtext-with-pandoc">
+<h2>Markdown to reStructuredText with Pandoc<a class="headerlink" href="#markdown-to-restructuredtext-with-pandoc" title="此标题的永久链接">¶</a></h2>
+<p>如果你熟悉 Markdown 写作。你可以使用 Pandoc 将成稿的 Markdown 转化为 reStructuredText</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install pandoc
+pandoc -s test.md -o test.rst
+</pre></div>
+</div>
+</section>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="此标题的永久链接">¶</a></h2>
+<p>用 Read The Docs build 时 pdf 生成错误</p>
+<p>参考 <a class="reference external" href="https://blog.seisman.info/trash/sphinx-chinese-support/">https://blog.seisman.info/trash/sphinx-chinese-support/</a></p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.xncoding.com/2017/01/22/fullstack/readthedoc.html">使用 ReadtheDocs 托管文档</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="md.html" class="btn btn-neutral float-left" title="Markdown" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="restructuredtext.html" class="btn btn-neutral float-right" title="reStructuredText" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Zhai Silong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -19,3 +19,10 @@ kats[all]
 
 # others
 python-slugify
+
+# Docs
+sphinx
+sphinx-autobuild
+sphinx_rtd_theme
+recommonmark
+sphinx-markdown-tables
