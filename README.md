@@ -1,6 +1,5 @@
 
-[![](https://img.shields.io/badge/doc-passed-brightgreen)](https://fund.readthedocs.io/zh_CN/latest/)
-
+[![](https://readthedocs.org/projects/fund/badge/?version=latest)](https://fund.readthedocs.io/zh_CN/latest/)[![stars](https://shields.io/github/stars/zhaisilong/fund?style=social)](https://github.com/zhaisilong/fund)
 
 ## 前言
 
