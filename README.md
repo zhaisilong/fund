@@ -1,14 +1,6 @@
----
-title: fund
-date: 2022-9-21
-tags: [fund]
----
 
-<div align="center">
-  <a href="https://fund.readthedocs.io/zh_CN/latest/">
-  <img alt="Docs" src="https://img.shields.io/badge/doc-passed-brightgreen"/>
-  </a>
-</div>
+[![](https://img.shields.io/badge/doc-passed-brightgreen)](https://fund.readthedocs.io/zh_CN/latest/)
+
 
 ## 前言
 
