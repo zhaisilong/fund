@@ -9,8 +9,8 @@ Python 量化投资
    :caption: Contents
 
    介绍 <intro>
-   使用 <tutorial/index>
-   设计 <design/index>
+   使用 <tutorial>
+   设计 <design>
 
 Indices and tables
 ==================
