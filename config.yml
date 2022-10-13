@@ -2,3 +2,5 @@ codes: [ '007464', '161725', '501019', '470006', '320014', '470007', '010213', '
 fund_path: data/funds
 analysis_path: data/analysis
 track_path: data/trace
+buy_fee:
+  161725: 0.001

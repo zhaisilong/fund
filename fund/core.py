@@ -116,15 +116,6 @@ class Fund:
         self._plot(parent=imgs_path)
         self._report(parent=report_path)
 
-
-class Fee:
-    def __init__(self):
-        self.buy_fee_rate = 0.15 / 100
-
-    def get_buy_fee_rate(self):
-        return self.buy_fee_rate
-
-
 import queue
 
 
@@ -177,12 +168,13 @@ class Pool:
 
 
 class Trace:
-    def __init__(self, path: str, fund: Fund):
+    def __init__(self, path: str, fund: Fund, buy_fee: float = 0.0015):
         self.trace_db = TraceDB(path)
         self.fund = fund
         self.path = self.fund.path
         self.name = self.fund.name
         self.code = self.fund.code
+        self.buy_fee = buy_fee
         self.gain = 0.
         self.pool = self._build()
 
@@ -219,7 +211,7 @@ class Trace:
             value_stock = self._get_value_stock(date)  # float
             if row['operation'] == 'buy':
                 money = row['quantity']
-                stock = money * 0.9985 / value_stock
+                stock = money * (1 - self.buy_fee) / value_stock
                 pool.buy(date, stock)
             else:
                 stock = row['quantity']

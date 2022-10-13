@@ -1,10 +1,10 @@
 
-[![](https://readthedocs.org/projects/fund/badge/?version=latest)](https://fund.readthedocs.io/zh_CN/latest/)[![stars](https://shields.io/github/stars/zhaisilong/fund?style=social)](https://github.com/zhaisilong/fund)
+[![](https://readthedocs.org/projects/fund/badge/?version=latest)](https://fund.readthedocs.io/zh_CN/latest/) [![stars](https://shields.io/github/stars/zhaisilong/fund?style=social)](https://github.com/zhaisilong/fund)
 
 ## 前言
 
 - 基于 Python 的量化投资基金的仓库.
-- 投资需谨慎,本仓库所有的信息均不构成投资建议.
+- 本仓库所有的信息均不构成投资建议.
 - 如果你对次项目感兴趣,欢迎右上角点赞.
 
 ## 安装

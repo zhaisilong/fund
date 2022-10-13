@@ -5,7 +5,7 @@ Python 量化投资
 
 .. toctree::
    :glob:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents
 
    介绍 <intro>
