@@ -19,6 +19,7 @@ kats[all]
 
 # others
 python-slugify
+mplfonts
 
 # Docs
 sphinx
