@@ -1,4 +1,4 @@
-介绍
+Introduction
 ========
 
 This is a Brief Introduction to Zhai Silong's repo of Fund Investment.
