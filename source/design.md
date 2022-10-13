@@ -54,6 +54,15 @@
 3. 引入 AI 时序预测
 4. 较为全面的投资策略, latex 成书
 
+### 2022-10-13
+
+- Config the buy fee rate
+
+### 2022-10-12
+
+- Read the Docs
+- Badges for docs and stars
+
 ### 2022-10-11
 
 - 改善命令框提示（增加日期指示）
