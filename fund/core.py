@@ -303,14 +303,6 @@ class Trace:
             file = parent / f'{self.name}-{self.code}.txt'
             with file.open('w') as f:
                 f.writelines(content)
-            png_dir = parent / 'imgs'
-            png_dir.mkdir(exist_ok=True, parents=True)
-            png = png_dir / f'{self.name}-{self.code}.png'
-            font = Path('data/others/SimHei.ttf')
-            import subprocess
-            cmd = f'txt2img -f {font} {file} {png}'
-            p = subprocess.Popen(cmd.split(), shell=False, stdout=-3)
-            p.wait()
         else:
             log.warning(f"您还未做任何投资！请按格式填写{self.name}-{self.code}.csv")
 
