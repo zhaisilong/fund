@@ -1,4 +1,3 @@
-
 from datetime import timedelta, datetime, date
 from typing import Optional
 
@@ -13,7 +12,6 @@ import matplotlib
 warnings.filterwarnings('ignore')
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
-
 log = get_logger(__name__)
 
 
@@ -117,6 +115,7 @@ class Fund:
         report_path = _parent / 'reports'
         self._plot(parent=imgs_path)
         self._report(parent=report_path)
+
 
 import queue
 
@@ -304,6 +303,14 @@ class Trace:
             file = parent / f'{self.name}-{self.code}.txt'
             with file.open('w') as f:
                 f.writelines(content)
+            png_dir = parent / 'imgs'
+            png_dir.mkdir(exist_ok=True, parents=True)
+            png = png_dir / f'{self.name}-{self.code}.png'
+            font = Path('data/others/SimHei.ttf')
+            import subprocess
+            cmd = f'txt2img -f {font} {file} {png}'
+            p = subprocess.Popen(cmd.split(), shell=False, stdout=-3)
+            p.wait()
         else:
             log.warning(f"您还未做任何投资！请按格式填写{self.name}-{self.code}.csv")
 

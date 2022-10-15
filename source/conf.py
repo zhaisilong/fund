@@ -12,10 +12,9 @@
 #
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath('..'))
 from fund.__version__ import __version__
-
-
 
 # -- Project information -----------------------------------------------------
 
@@ -44,7 +43,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -64,14 +62,14 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 if on_rtd:
     latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #'papersize': 'letterpaper',
+        # The paper size ('letterpaper' or 'a4paper').
+        # 'papersize': 'letterpaper',
 
-    # The font size ('10pt', '11pt' or '12pt').
-    #'pointsize': '10pt',
+        # The font size ('10pt', '11pt' or '12pt').
+        # 'pointsize': '10pt',
 
-    # Additional stuff for the LaTeX preamble.
-    'preamble': r'''
+        # Additional stuff for the LaTeX preamble.
+        'preamble': r'''
     \hypersetup{unicode=true}
     \usepackage{CJKutf8}
     \DeclareUnicodeCharacter{00A0}{\nobreakspace}
@@ -90,11 +88,11 @@ if on_rtd:
     }
 else:
     latex_elements = {
-        'papersize' : 'a4paper',
-        'utf8extra' : '',
-        'inputenc'  : '',
-        'babel'     : r'''\usepackage[english]{babel}''',
-        'preamble' : r'''
+        'papersize': 'a4paper',
+        'utf8extra': '',
+        'inputenc': '',
+        'babel': r'''\usepackage[english]{babel}''',
+        'preamble': r'''
         \usepackage{ctex}
         ''',
     }
