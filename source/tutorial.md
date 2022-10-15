@@ -1,6 +1,6 @@
-## 教程
+# 教程
 
-### 爬取
+## 基金爬取
 
 ```bash
 python crawl.py
@@ -8,7 +8,7 @@ python crawl.py
 
 信息保存在 `data/funds`
 
-### 分析
+## 基金分析
 
 ```bash
 python analysis.py
@@ -20,7 +20,7 @@ python analysis.py
 - 报告信息: 值的周期信息(年月周)
 - 信息保存在 `data/funds`
 
-### 基金跟踪
+## 基金跟踪
 
 ```bash
 python track.py
@@ -31,7 +31,7 @@ python track.py
 - 可以得到基金跟踪的走势图
 - 以及一些收益分析信息报告
 
-### 基金预测
+## 基金预测
 
 ```bash
 python predict.py

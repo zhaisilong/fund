@@ -3,15 +3,10 @@ Python 量化投资
 
 .. toctree::
    :glob:
-   :numbered:
    :maxdepth: 1
-   :caption: 内容
+   :caption: Contents
 
-   介绍 <intro>
-   教程 <tutorial>
-   投资 <holy-grail/index>
-   设计 <design>
-   参考 <websites>
+    定投 <AIP.md>
 
 Indices and tables
 ==================
