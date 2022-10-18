@@ -81,6 +81,6 @@
 .. |stars| image:: https://shields.io/github/stars/zhaisilong/fund?style=social
    :target: https://github.com/zhaisilong/fund
 .. |010213| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
-.. |010110| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
-.. |161725| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
-.. |470007| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
+.. |010110| image:: data/trace/imgs/广发医药健康混合A-010110.png
+.. |161725| image:: data/trace/imgs/招商中证白酒指数(LOF)A-161725.png
+.. |470007| image:: data/trace/imgs/汇添富上证综合指数-470007.png
