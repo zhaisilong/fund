@@ -1,6 +1,7 @@
 from datetime import timedelta, datetime, date
-from typing import Optional
+from typing import Optional, Tuple
 
+import numpy as np
 import pandas as pd
 from plotnine import *
 from pathlib import Path
@@ -168,6 +169,56 @@ class Pool:
         return pd.DataFrame({'date': self._date, 'stock': self._stock})
 
 
+class LowPool:
+    def __init__(self):
+        self._date = []
+        self._stock = []
+        self._value = []
+
+    @property
+    def stock(self):
+        return sum(self._stock)
+
+    def check(self):
+        assert len(self._date) == len(self._stock) == len(self._value)
+    def buy(self, date: datetime, stock: float, value: float):
+        self.check()
+        self._date.append(date)
+        self._stock.append(stock)
+        self._value.append(value)
+
+    def sell(self, stock: float):
+        """从值低往高取出请求的 stock 数量"""
+        self.check()
+        request_stock = stock
+        acc_date = []
+        acc_stock = []
+        while True:
+            min_idx = np.argmin(self._value)
+            pop_stock = self._stock.pop(min_idx)
+            pop_date = self._date.pop(min_idx)
+            pop_value = self._value.pop(min_idx)
+            if pop_stock > request_stock:
+                self._stock.insert(min_idx, pop_stock - request_stock)
+                self._date.insert(min_idx, pop_date)
+                self._value.insert(min_idx, pop_value)
+                acc_date.append(pop_date)
+                acc_stock.append(request_stock)
+                break
+            elif pop_stock == request_stock:
+                acc_date.append(pop_date)
+                acc_stock.append(request_stock)
+                break
+            else:
+                request_stock -= pop_stock
+                acc_date.append(pop_date)
+                acc_stock.append(pop_stock)
+        return acc_date, acc_stock
+
+    @property
+    def df(self):
+        return pd.DataFrame({'date': self._date, 'stock': self._stock})
+
 class Trace:
     def __init__(self, path: str, fund: Fund, buy_fee: float = 0.0015):
         self.trace_db = TraceDB(path)
@@ -177,7 +228,7 @@ class Trace:
         self.code = self.fund.code
         self.buy_fee = buy_fee
         self.gain = 0.
-        self.pool = self._build()
+        self.pool, self.low_pool = self._build()
 
     @property
     def investment(self):
@@ -201,8 +252,9 @@ class Trace:
     def value(self):
         return self.latest_value_stock * self.stock
 
-    def _build(self) -> Pool:
+    def _build(self) -> Tuple[Pool]:
         pool = Pool()
+        low_pool = LowPool()
         for i, row in self.trace_db.df.iterrows():
             date = row['date']
             if date > self.fund.latest_day:
@@ -214,15 +266,17 @@ class Trace:
                 money = row['quantity']
                 stock = money * (1 - self.buy_fee) / value_stock
                 pool.buy(date, stock)
+                low_pool.buy(date, stock, value_stock)
             else:
                 stock = row['quantity']
                 days, stocks = pool.sell(stock)
+                low_pool.sell(stock)  # 不需要输出
                 for day, stock in zip(days, stocks):
                     time_delta = date - day
                     fee_rate = self._get_sell_fee_rate(time_delta)
                     self.gain += stock * value_stock * (1 - fee_rate)
 
-        return pool
+        return pool, low_pool
 
     def _get_sell_fee_rate(self, time_delta):
         if time_delta <= timedelta(days=6):
@@ -292,14 +346,24 @@ class Trace:
             content.append(f'基金价值：{self.value:.2f}元\n')
             content.append(
                 f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(self.value + self.gain - self.investment) / self.investment * 100:.2f}%\n')
+
+            # 池子
             pool_pro = self.pool.df.copy()
+            low_pool_pro = self.low_pool.df.copy()
             today = datetime.strptime(str(date.today()), '%Y-%m-%d')
             pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
             pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
             pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
             pool_pro['improve/%'] = pool_pro.apply(
                 lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+            low_pool_pro['day_delta'] = low_pool_pro['date'].apply(lambda x: today - x)
+            low_pool_pro['fee/%'] = low_pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
+            low_pool_pro['value'] = low_pool_pro['date'].apply(self._get_value_stock)
+            low_pool_pro['improve/%'] = low_pool_pro.apply(
+                lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+            # 写入内容
             content.append(f'池子:\n{repr(pool_pro)}\n')
+            content.append(f'按低值出售的池子:\n{repr(low_pool_pro)}\n')
             file = parent / f'{self.name}-{self.code}.txt'
             with file.open('w') as f:
                 f.writelines(content)
