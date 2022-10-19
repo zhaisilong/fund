@@ -15,6 +15,8 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文�
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 log = get_logger(__name__)
 
+DPI = 240
+FIGURE_SIZE = (48, 18)
 
 class Fund:
     def __init__(self, path: str):
@@ -76,9 +78,9 @@ class Fund:
                      xlab("Months") +
                      ylab("Values") +
                      ggtitle(f'{self.name}-{self.code}') +
-                     theme(figure_size=(40, 10), text=element_text(family='SimHei'))
+                     theme(figure_size=FIGURE_SIZE, text=element_text(family='SimHei'))
                      )
-        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=240)
+        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=DPI)
 
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
@@ -331,9 +333,9 @@ class Trace:
                      xlab("Months") +
                      ylab("Values") +
                      ggtitle(f'{self.name}-{self.code}') +
-                     theme(figure_size=(40, 10), text=element_text(family='SimHei'))
+                     theme(figure_size=FIGURE_SIZE, text=element_text(family='SimHei'))
                      )
-        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=240)
+        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=DPI)
 
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
