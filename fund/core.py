@@ -78,7 +78,7 @@ class Fund:
                      ggtitle(f'{self.name}-{self.code}') +
                      theme(figure_size=(40, 10), text=element_text(family='SimHei'))
                      )
-        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=250)
+        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=240)
 
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
@@ -333,7 +333,7 @@ class Trace:
                      ggtitle(f'{self.name}-{self.code}') +
                      theme(figure_size=(40, 10), text=element_text(family='SimHei'))
                      )
-        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=250)
+        base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=240)
 
     def _report(self, parent: Path):
         parent.mkdir(exist_ok=True, parents=True)
