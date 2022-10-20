@@ -32,7 +32,11 @@ language = 'zh_CN'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'recommonmark',
+    'recommonmark',  # 支持 markdown
+    'sphinx_markdown_tables',  # 支持 markdown 的 table
+    'sphinx.ext.mathjax',  # 支持数学
+    'sphinx.ext.todo',  # 支持
+    'sphinx.ext.autodoc',  # 支持文本 引用
 ]
 
 # Add any paths that contain templates here, relative to this directory.
