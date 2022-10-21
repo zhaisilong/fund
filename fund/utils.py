@@ -2,7 +2,7 @@ import logging
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import List
+from typing import List, Union
 
 import execjs
 import pandas as pd
@@ -58,4 +58,15 @@ def get_config(conf_path: str):
     with open(conf_path) as f:
         conf = yaml.full_load(f)
     return conf
+
+def path2name(path: Union[str,Path]):
+    if isinstance(path, str):
+        _path = Path(path)
+    elif isinstance(path, Path):
+        _path = path
+    name = _path.name.split('-')[0]
+    code = _path.name.split('.')[0].split('-')[-1]
+    return name, code
+
+
 

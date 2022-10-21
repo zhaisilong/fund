@@ -1,12 +1,12 @@
 from datetime import timedelta, datetime, date
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union, List
 
 import numpy as np
 import pandas as pd
 from plotnine import *
 from pathlib import Path
 from fund.db import FundDB, TraceDB
-from fund.utils import get_logger
+from fund.utils import get_logger, path2name
 import warnings
 import matplotlib
 
@@ -17,6 +17,7 @@ log = get_logger(__name__)
 
 DPI = 240
 FIGURE_SIZE = (48, 18)
+
 
 class Fund:
     def __init__(self, path: str):
@@ -34,9 +35,7 @@ class Fund:
 
     def _get_name(self):
         """从路径中获取名字和代码"""
-        name = self.path.name.split('-')[0]
-        code = self.path.name.split('.')[0].split('-')[-1]
-        return name, code
+        return path2name(self.path)
 
     def __repr__(self):
         return f'name: {self.name}, code: {self.code}'
@@ -120,9 +119,6 @@ class Fund:
         self._report(parent=report_path)
 
 
-import queue
-
-
 class Pool:
     def __init__(self):
         self._date = []
@@ -183,6 +179,7 @@ class LowPool:
 
     def check(self):
         assert len(self._date) == len(self._stock) == len(self._value)
+
     def buy(self, date: datetime, stock: float, value: float):
         self.check()
         self._date.append(date)
@@ -221,6 +218,60 @@ class LowPool:
     def df(self):
         return pd.DataFrame({'date': self._date, 'stock': self._stock})
 
+
+class Reporter:
+    def __init__(self):
+        self.content = []
+
+    def to_txt(self, path: Union[str, Path]):
+        if isinstance(path, str):
+            _path = Path(path)
+        elif isinstance(path, Path):
+            _path = path
+        else:
+            raise FileExistsError
+
+        _path.parent.mkdir(exist_ok=True, parents=True)  # 确保文件所在目录存在
+
+        with _path.open('w') as f:
+            for line in self.content:
+                f.write(line)
+                f.write('\n')
+
+
+class TrackReporter(Reporter):
+    def __init__(self, investment: float,
+                 stock: float, latest_value_stock: float, gain: float,
+                 value: float, pool: Pool, low_pool: LowPool):
+        super(TrackReporter, self).__init__()
+        if investment:
+            self.content.append(f'投资总金额：{investment:.2f}元')
+            self.content.append(f'股份数：{stock:.2f}份')
+            self.content.append(f'当前每股单价：{latest_value_stock:.2f}元/份')
+            self.content.append(f'卖出收益(扣税后)：{gain:.2f}')
+            self.content.append(f'基金价值：{value:.2f}元')
+            self.content.append(
+                f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(value + gain - investment) / investment * 100:.2f}%')
+            self.content.append('池子:')
+            self.content.append(f'{repr(pool)}')
+            self.content.append('按低值出售的池子:')
+            self.content.append(f'{repr(low_pool)}')
+        else:
+            name, code = path2name(self.path)
+            self.content.append(f"您还未做任何投资！请按格式填写{name}-{code}.csv")
+
+class FinanceReporter(Reporter):
+    def __init__(self, investments: List[float], gains: List[float], values: List[float]):
+        super(FinanceReporter, self).__init__()
+        _investment = sum(investments)
+        _gain = sum(gains)
+        _value = sum(values)
+        self.content.append(f'投资总金额：{_investment:.2f}元')
+        self.content.append(f'卖出收益(扣税后)：{_gain:.2f}')
+        self.content.append(f'基金价值：{_value:.2f}元')
+        self.content.append(
+            f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(_value + _gain - _investment) / _investment * 100:.2f}%')
+
 class Trace:
     def __init__(self, path: str, fund: Fund, buy_fee: float = 0.0015):
         self.trace_db = TraceDB(path)
@@ -231,6 +282,7 @@ class Trace:
         self.buy_fee = buy_fee
         self.gain = 0.
         self.pool, self.low_pool = self._build()
+
 
     @property
     def investment(self):
@@ -338,39 +390,26 @@ class Trace:
         base_plot.save(parent / f'{self.name}-{self.code}.png', limitsize=False, dpi=DPI)
 
     def _report(self, parent: Path):
-        parent.mkdir(exist_ok=True, parents=True)
-        if self.investment:
-            content = list()
-            content.append(f'投资总金额：{self.investment:.2f}元\n')
-            content.append(f'股份数：{self.stock:.2f}份\n')
-            content.append(f'当前每股单价：{self.latest_value_stock:.2f}元/份\n')
-            content.append(f'卖出收益(扣税后)：{self.gain:.2f}元\n')
-            content.append(f'基金价值：{self.value:.2f}元\n')
-            content.append(
-                f'收益率(卖出收益+基金价值/投资总金额,部分扣税)：{(self.value + self.gain - self.investment) / self.investment * 100:.2f}%\n')
-
-            # 池子
-            pool_pro = self.pool.df.copy()
-            low_pool_pro = self.low_pool.df.copy()
-            today = datetime.strptime(str(date.today()), '%Y-%m-%d')
-            pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
-            pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
-            pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
-            pool_pro['improve/%'] = pool_pro.apply(
-                lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
-            low_pool_pro['day_delta'] = low_pool_pro['date'].apply(lambda x: today - x)
-            low_pool_pro['fee/%'] = low_pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
-            low_pool_pro['value'] = low_pool_pro['date'].apply(self._get_value_stock)
-            low_pool_pro['improve/%'] = low_pool_pro.apply(
-                lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
-            # 写入内容
-            content.append(f'池子:\n{repr(pool_pro)}\n')
-            content.append(f'按低值出售的池子:\n{repr(low_pool_pro)}\n')
-            file = parent / f'{self.name}-{self.code}.txt'
-            with file.open('w') as f:
-                f.writelines(content)
-        else:
-            log.warning(f"您还未做任何投资！请按格式填写{self.name}-{self.code}.csv")
+        file = parent / f'{self.name}-{self.code}.txt'
+        # 池子计算
+        pool_pro = self.pool.df.copy()
+        low_pool_pro = self.low_pool.df.copy()
+        today = datetime.strptime(str(date.today()), '%Y-%m-%d')
+        pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
+        pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
+        pool_pro['value'] = pool_pro['date'].apply(self._get_value_stock)
+        pool_pro['improve/%'] = pool_pro.apply(
+            lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+        # 低值出售的池子计算
+        low_pool_pro['day_delta'] = low_pool_pro['date'].apply(lambda x: today - x)
+        low_pool_pro['fee/%'] = low_pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)
+        low_pool_pro['value'] = low_pool_pro['date'].apply(self._get_value_stock)
+        low_pool_pro['improve/%'] = low_pool_pro.apply(
+            lambda x: (self.latest_value_stock - x['value']) / x['value'] * 100, axis=1)
+        reporter = TrackReporter(investment=self.investment,
+                                 stock=self.stock, latest_value_stock=self.latest_value_stock, gain=self.gain,
+                                 value=self.value, pool=pool_pro, low_pool=low_pool_pro)
+        reporter.to_txt(path=file)
 
     def show(self, parent: Optional[str]):
         if parent:

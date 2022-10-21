@@ -3,7 +3,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from fund.utils import get_config, get_logger
-from fund.core import Trace, Fund
+from fund.core import Trace, Fund, FinanceReporter
 
 
 log = get_logger(__name__)
@@ -22,12 +22,23 @@ def track(conf: dict):
     for k, v in buy_fee.items():
         buy_fee_dict[str(k)] = v  # make sure the key is a string
 
+    # 生成总报告
+    investments = []
+    values = []
+    gains = []
     for track in Path(track_path).iterdir():
         if track.is_file():
             fund = Fund(Path(fund_path) / track.name)
             log.info(f"处理 {fund.latest_day.date()}: {fund.name}-{fund.code}")
             trace = Trace(track, fund, buy_fee_dict[fund.code])
             trace.show(track_path)
+            investments.append(trace.investment)
+            values.append(trace.value)
+            gains.append(trace.gain)
+    # 输出总报告
+    file = Path(track_path) / 'reports' / 'finance.txt'
+    finance_reporter = FinanceReporter(investments, gains, values)
+    finance_reporter.to_txt(file)
 
 
 if __name__ == '__main__':
