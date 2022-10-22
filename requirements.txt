@@ -15,7 +15,7 @@ jupyter
 ipykernel
 
 # Core
-kats[all]
+prophet
 
 # others
 python-slugify

@@ -2,8 +2,7 @@ import logging
 from pathlib import Path
 
 import pandas as pd
-from kats.consts import TimeSeriesData
-from kats.models.prophet import ProphetModel, ProphetParams
+from prophet import Prophet
 from fund.utils import get_config, get_logger
 
 from fund import Fund
@@ -12,6 +11,7 @@ log = get_logger(__name__)
 log.setLevel(logging.INFO)
 
 def predict(conf: dict):
+    m = Prophet
     air_passengers_df = pd.read_csv(Path('data/others/air_passengers.csv'))
     multi_ts_df = pd.read_csv(Path("data/others/multi_ts.csv"), index_col=0)
     air_passengers_df.columns = ["time", "value"]
