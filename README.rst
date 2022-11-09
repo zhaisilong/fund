@@ -81,6 +81,14 @@
 |470007|
 
 
+工银金融地产混合A-000251
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: data/trace/reports/工银金融地产混合A-000251.txt
+   :literal:
+
+|000251|
+
 .. |docs| image:: https://readthedocs.org/projects/fund/badge/?version=latest
    :target: https://fund.readthedocs.io/zh_CN/latest/
 .. |stars| image:: https://shields.io/github/stars/zhaisilong/fund?style=social
@@ -89,3 +97,4 @@
 .. |010110| image:: data/trace/imgs/广发医药健康混合A-010110.png
 .. |161725| image:: data/trace/imgs/招商中证白酒指数(LOF)A-161725.png
 .. |470007| image:: data/trace/imgs/汇添富上证综合指数-470007.png
+.. |000251| image:: data/trace/imgs/工银金融地产混合A-000251.png
