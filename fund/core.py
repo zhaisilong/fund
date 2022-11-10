@@ -394,6 +394,9 @@ class Trace:
         # 池子计算
         pool_pro = self.pool.df.copy()
         low_pool_pro = self.low_pool.df.copy()
+        if len(pool_pro) == 0:  # pool 里无记录
+            log.info(f'没有最新数据,不做记录{self.name}-{self.code}')
+            return 0
         today = datetime.strptime(str(date.today()), '%Y-%m-%d')
         pool_pro['day_delta'] = pool_pro['date'].apply(lambda x: today - x)
         pool_pro['fee/%'] = pool_pro['day_delta'].apply(lambda x: self._get_sell_fee_rate(x) * 100)

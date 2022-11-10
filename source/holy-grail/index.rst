@@ -6,7 +6,8 @@ Python 量化投资
    :maxdepth: 1
    :caption: Contents
 
-    定投 <AIP.md>
+    定投 <AIP>
+    策略 <strategy>
 
 Indices and tables
 ==================
