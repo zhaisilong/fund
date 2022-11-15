@@ -24,6 +24,13 @@
     brew install java
     brew install node
 
+安装 `pandoc`
+
+.. code:: bash
+
+    brew install pandoc  # for Darwin
+    sudo apt install pandoc  # for Ubuntu
+
 使用
 ----
 
@@ -99,7 +106,7 @@
 交银创业板50指数A-007464
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: data/trace/reports/交银创业板50指数A-007464.csv
+.. include:: data/trace/reports/交银创业板50指数A-007464.txt
    :literal:
 
 |007464|

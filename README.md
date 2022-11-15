@@ -23,6 +23,13 @@ brew install java
 brew install node
 ```
 
+安装 [pandoc]{.title-ref}
+
+``` bash
+brew install pandoc  # for Darwin
+sudo apt install pandoc  # for Ubuntu
+```
+
 # 使用
 
 ## 快速入手
@@ -176,6 +183,20 @@ python strtegy.py  # 制定策略
 ## 交银创业板50指数A-007464
 
 ``` {. literal=""}
+投资总金额：24.00元
+股份数：14.98份
+当前每股单价：1.61元/份
+卖出收益(扣税后)：0.00
+基金价值：24.08元
+收益率(卖出收益+基金价值/投资总金额,部分扣税)：0.34%
+池子:
+        date     stock day_delta  fee/%   value  improve/%
+0 2022-11-10  7.525437    5 days    1.5  1.5922   0.979776
+1 2022-11-14  7.452419    1 days    1.5  1.6078   0.000000
+按低值出售的池子:
+        date     stock day_delta  fee/%   value  improve/%
+0 2022-11-10  7.525437    5 days    1.5  1.5922   0.979776
+1 2022-11-14  7.452419    1 days    1.5  1.6078   0.000000
 ```
 
 ![007464](data/trace/imgs/交银创业板50指数A-007464.png)
