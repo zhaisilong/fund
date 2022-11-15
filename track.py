@@ -27,7 +27,7 @@ def track(conf: dict):
     values = []
     gains = []
     for track in Path(track_path).iterdir():
-        if track.is_file():
+        if track.is_file() and str(track).endswith('.csv'):  # only read csv files
             fund = Fund(Path(fund_path) / track.name)
             log.info(f"处理 {fund.latest_day.date()}: {fund.name}-{fund.code}")
             trace = Trace(track, fund, buy_fee_dict[fund.code])

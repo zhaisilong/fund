@@ -31,6 +31,9 @@ def _x2date(x: int):
 
 
 def _get_url(fscode):
+    """获取 URL 访问链接
+    :param fscode: 基金代码
+    """
     head = 'http://fund.eastmoney.com/pingzhongdata/'  # 东方财富
     tail = '.js?v=' + time.strftime("%Y%m%d%H%M%S", time.localtime())
     return head + fscode + tail
@@ -54,12 +57,18 @@ def get_fund(fscode: str, parent: str = '.'):
 
 
 def get_config(conf_path: str):
-    # 基金分析
+    """导入基金的 yaml 配置
+    :param conf_path: 基金配置路径
+    """
     with open(conf_path) as f:
         conf = yaml.full_load(f)
     return conf
 
-def path2name(path: Union[str,Path]):
+
+def path2name(path: Union[str, Path]):
+    """从路径中读取基金名字与代码
+    :param path: Path
+    """
     if isinstance(path, str):
         _path = Path(path)
     elif isinstance(path, Path):
@@ -67,6 +76,3 @@ def path2name(path: Union[str,Path]):
     name = _path.name.split('-')[0]
     code = _path.name.split('.')[0].split('-')[-1]
     return name, code
-
-
-

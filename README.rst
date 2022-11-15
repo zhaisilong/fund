@@ -17,6 +17,13 @@
    conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
+安装 `java runtime`
+
+.. code:: bash
+
+    brew install java
+    brew install node
+
 使用
 ----
 

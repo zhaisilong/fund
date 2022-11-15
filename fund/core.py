@@ -15,8 +15,8 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文�
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 log = get_logger(__name__)
 
-DPI = 240
-FIGURE_SIZE = (48, 18)
+DPI = 120
+FIGURE_SIZE = (24, 9)
 
 
 class Fund:
@@ -55,15 +55,12 @@ class Fund:
         df = self.df.copy()
         df['delta'] = df.value - df.value.shift(periods=1, fill_value=1.)  # 标签为增量
         df['delta_percent'] = df['delta'] / df.value.shift(periods=1, fill_value=1.) * 100
-        df = df.iloc[-240 * 4:]  # 最长展示 4 年
+        df = df.iloc[-240 * 4:]  # 最长展示 4 年,除去交易停止日
         df.reset_index(drop=True, inplace=True)
-        # 插入三根垂直线 周 月 年
-        vline_day = [df.date.iloc[-i] for i in [240, 20, 5]]  # 除去双休日
-        # 插入两根水平线 0.3 0.7
-        df.value.quantile([0.3, 0.7])
+        vline_day = [df.date.iloc[-i] for i in [240, 20, 5]]  # 插入三根垂直线 周 月 年,除去双休日
+        df.value.quantile([0.3, 0.7])  # 插入两根水平线 0.3 0.7
         hline_value = df.value.quantile([0.3, 0.7]).tolist()
-        # 加入标签 每隔 1 个月
-        txt_df = df.iloc[::-20]
+        txt_df = df.iloc[::-20]  # 加入标签 每隔 1 个月
         txt = {'x': txt_df.date.tolist(), 'y': txt_df.value.tolist(),
                'label': txt_df.apply(lambda row: f'{row["delta_percent"]:.2f}%', axis=1).tolist()}
         base_plot = (ggplot() +
