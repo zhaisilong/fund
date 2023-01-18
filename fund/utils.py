@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 from datetime import datetime
 from pathlib import Path
@@ -24,7 +25,6 @@ def get_logger(name):
 
 log = get_logger(__name__)
 
-
 def _x2date(x: int):
     assert isinstance(x, int)
     return datetime.fromtimestamp(x / 1000)
@@ -43,6 +43,11 @@ def get_fund(fscode: str, parent: str = '.'):
     """获取基金数据,写入 csv 文件
     :param code: 基金代码
     """
+    time.sleep(1)  # 防止被反爬虫
+    # todo: 检查文件的最新日期
+    # for file in os.listdir(parent):
+    #     if file.endswith('.csv'):
+    #         file.rstrip('.csv').split('-')[-1]
     parent_path = Path(parent)
     parent_path.mkdir(exist_ok=True)
     content = requests.get(_get_url(fscode))

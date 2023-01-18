@@ -10,7 +10,10 @@ def crawl(conf):
     codes = conf['codes']
     fund_path = conf['fund_path']
     for code in codes:
-        get_fund(code, fund_path)
+        try:
+            get_fund(code, fund_path)
+        except:
+            log.warning(f"error when fetching {codes}")
 
 
 if __name__ == '__main__':
