@@ -12,7 +12,8 @@ def crawl(conf):
     for code in codes:
         try:
             get_fund(code, fund_path)
-        except:
+        except Exception as e:
+            log.warning(e)
             log.warning(f"error when fetching {codes}")
 
 
