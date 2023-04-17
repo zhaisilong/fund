@@ -111,6 +111,22 @@
 
 |007464|
 
+诺安成长混合-320007
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: data/trace/reports/诺安成长混合-320007.txt
+   :literal:
+
+|320007|
+
+富国中证新能源汽车指数(LOF)A-161028
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: data/trace/reports/富国中证新能源汽车指数(LOF)A-161028.txt
+   :literal:
+
+|161028|
+
 .. |docs| image:: https://readthedocs.org/projects/fund/badge/?version=latest
    :target: https://fund.readthedocs.io/zh_CN/latest/
 .. |stars| image:: https://shields.io/github/stars/zhaisilong/fund?style=social
@@ -121,3 +137,5 @@
 .. |470007| image:: data/trace/imgs/汇添富上证综合指数-470007.png
 .. |000251| image:: data/trace/imgs/工银金融地产混合A-000251.png
 .. |007464| image:: data/trace/imgs/交银创业板50指数A-007464.png
+.. |320007| image:: data/trace/imgs/诺安成长混合-320007.png
+.. |161028| image:: data/trace/imgs/富国中证新能源汽车指数(LOF)A-161028.png
