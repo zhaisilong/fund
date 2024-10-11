@@ -52,9 +52,12 @@
 
    python crawl.py  # 爬取基金的信息
    python analysis.py  # 基金分析
-   python track.py  # 基金跟踪
+   python track.py  # 基金跟踪，记录你的购买和卖出记录；在走势图中打印
    python predict.py  # 基金预测
    python strtegy.py  # 制定策略
+
+   # Record your buy and sell information
+   python record
 
 Bug
 ~~~~~~~~
@@ -62,11 +65,20 @@ Bug
 WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 
 .. code:: bash
-    sudo apt install msttcorefonts
-    rm ~/.cache/matplotlib -rf
+    python bin/fix_matplotlib.py
    
 跟踪情况
 --------
+
+- 三根点
+    - 🔴 红色点：卖出
+    - ⚫️ 黑色点：买入
+    - 🟢 绿色点：数据点，当日涨跌
+- 三根垂直线（除去双休日）
+    - 年（红），月（黄），日（绿）
+- 两根水平线（3/7 分位线）
+    - 黑色（低位线）
+    - 粉色（高位线）
 
 全局跟踪
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
