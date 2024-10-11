@@ -65,20 +65,21 @@ Bug
 WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 
 .. code:: bash
-    python bin/fix_matplotlib.py
+
+   python bin/fix_matplotlib.py
    
 跟踪情况
 --------
 
 - 三根点
-    - 🔴 红色点：卖出
-    - ⚫️ 黑色点：买入
-    - 🟢 绿色点：数据点，当日涨跌
+  - 🔴 红色点：卖出
+  - ⚫️ 黑色点：买入
+  - 🟢 绿色点：数据点，当日涨跌
 - 三根垂直线（除去双休日）
-    - 年（红），月（黄），日（绿）
+  - 年（红），月（黄），日（绿）
 - 两根水平线（3/7 分位线）
-    - 黑色（低位线）
-    - 粉色（高位线）
+  - 黑色（低位线）
+  - 粉色（高位线）
 
 全局跟踪
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
