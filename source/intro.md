@@ -15,4 +15,4 @@
 
 ### Wanted
 
-If you have some good advice, please contact with [me](http://zhaisilong.com).
+If you have some good advice, please contact with me (zhaisilong@outlook.com).

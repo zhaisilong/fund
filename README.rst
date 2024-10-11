@@ -12,9 +12,9 @@
 
 .. code:: bash
 
-   conda create -nfund python=3.8
-   # 深度学习 pytorch 套装
-   conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+   mamba create -nfund python=3.8
+   mamba activate fund
+   mamba install pytorch torchvision torchaudio cudatoolkit=11.8 -c pytorch
    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
 安装 `java runtime`
@@ -23,6 +23,10 @@
 
     brew install java
     brew install node
+
+    # Ubuntu
+    sudo apt install default-jdk nodejs npm
+    java -version; node -v; npm -v
 
 安装 `pandoc`
 
@@ -52,6 +56,15 @@
    python predict.py  # 基金预测
    python strtegy.py  # 制定策略
 
+Bug
+~~~~~~~~
+
+WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
+
+.. code:: bash
+    sudo apt install msttcorefonts
+    rm ~/.cache/matplotlib -rf
+   
 跟踪情况
 --------
 

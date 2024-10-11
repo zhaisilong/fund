@@ -15,6 +15,7 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文�
 matplotlib.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 log = get_logger(__name__)
 
+# 调整字体 方便看出走线
 DPI = 120
 FIGURE_SIZE = (24, 9)
 
