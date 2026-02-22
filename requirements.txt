@@ -16,6 +16,7 @@ ipykernel
 
 # Core
 prophet
+loguru
 
 # others
 python-slugify

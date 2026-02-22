@@ -31,10 +31,10 @@ python track.py
 - 可以得到基金跟踪的走势图
 - 以及一些收益分析信息报告
 
-## 基金预测
+## 基金预测 [In Comming]
 
 ```bash
 python predict.py
 ```
 
-- 基于 prophet 的机器学习预测 [In Comming]
+- 基于 prophet 的机器学习预测

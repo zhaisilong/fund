@@ -7,6 +7,10 @@ build/
 
 # Python
 __pycache__/
+*.egg-info/
 
 # OS
 **/.DS_Store
+
+# User
+tmp/

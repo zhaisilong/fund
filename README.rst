@@ -15,7 +15,7 @@
    mamba create -nfund python=3.8
    mamba activate fund
    mamba install pytorch torchvision torchaudio cudatoolkit=11.8 -c pytorch
-   pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+   pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 安装 `java runtime`
 
@@ -43,21 +43,29 @@
 
 .. code:: bash
 
-   bash pipeline.sh
+   bash pipeline.sh  # or notebooks/quick_start.ipynb
 
 基本操作
 ~~~~~~~~
 
 .. code:: bash
 
-   python crawl.py  # 爬取基金的信息
-   python analysis.py  # 基金分析
-   python track.py  # 基金跟踪，记录你的购买和卖出记录；在走势图中打印
-   python predict.py  # 基金预测
-   python strtegy.py  # 制定策略
+   fund crawl  # 爬取基金的信息
+   fund analysis  # 基金分析
+   fund track  # 基金跟踪，记录你的购买和卖出记录；在走势图中打印
+   # fund predict  # 基金预测 [In Comming]
+   # fund strtegy  # 制定策略 [In Comming]
 
    # Record your buy and sell information
-   python record
+   fund record  # CMD interface
+
+文档构建
+~~~~~~~~
+
+.. code:: bash
+
+   make html
+   make serve
 
 Bug
 ~~~~~~~~
@@ -66,7 +74,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 
 .. code:: bash
 
-   python bin/fix_matplotlib.py
+   fund fix_matplotlib
    
 跟踪情况
 --------
@@ -157,6 +165,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
    :target: https://fund.readthedocs.io/zh_CN/latest/
 .. |stars| image:: https://shields.io/github/stars/zhaisilong/fund?style=social
    :target: https://github.com/zhaisilong/fund
+
 .. |010213| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
 .. |010110| image:: data/trace/imgs/广发医药健康混合A-010110.png
 .. |161725| image:: data/trace/imgs/招商中证白酒指数(LOF)A-161725.png

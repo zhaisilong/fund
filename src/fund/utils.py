@@ -1,0 +1,118 @@
+from collections import defaultdict
+import execjs
+import pandas as pd
+import requests
+import yaml
+import time
+
+from datetime import datetime
+from pathlib import Path
+from typing import Union
+from loguru import logger
+
+
+def _x2date(x: int):
+    assert isinstance(x, int)
+    return datetime.fromtimestamp(x / 1000)
+
+
+def _get_url(fscode):
+    """获取 URL 访问链接
+    :param fscode: 基金代码
+    """
+    head = "http://fund.eastmoney.com/pingzhongdata/"  # 东方财富
+    tail = ".js?v=" + time.strftime("%Y%m%d%H%M%S", time.localtime())
+    return head + fscode + tail
+
+
+def get_fund(fscode: str, parent: str = "."):
+    """获取基金数据,写入 csv 文件
+    :param code: 基金代码
+    """
+    time.sleep(1)  # 防止被反爬虫
+    # todo: 检查文件的最新日期
+    # for file in os.listdir(parent):
+    #     if file.endswith('.csv'):
+    #         file.rstrip('.csv').split('-')[-1]
+    parent_path = Path(parent)
+    parent_path.mkdir(exist_ok=True)
+    content = requests.get(_get_url(fscode))
+    jsContent = execjs.compile(content.text)
+    name = jsContent.eval("fS_name")
+    code = jsContent.eval("fS_code")
+    fund_path = parent_path / f"{name}-{code}.csv"
+    net_worth_trend = jsContent.eval("Data_netWorthTrend")  # 单位净值走势
+    pd.DataFrame(
+        {
+            "date": [_x2date(day["x"]) for day in net_worth_trend],
+            "value": [day["y"] for day in net_worth_trend],
+        }
+    ).to_csv(fund_path)
+    logger.info(f'{_x2date(net_worth_trend[-1]["x"]).date()}: {name}-{code}')
+
+
+def get_config(conf_path: Union[Path, str]):
+    """导入基金的 yaml 配置
+    :param conf_path: 基金配置路径
+    """
+    if isinstance(conf_path, str):
+        conf_path = Path(conf_path)
+    with conf_path.open() as f:
+        conf = yaml.full_load(f)
+    return conf
+
+
+def path2name(path: Union[str, Path]):
+    """从路径中读取基金名字与代码
+    :param path: Path
+    """
+    if isinstance(path, str):
+        _path = Path(path)
+    elif isinstance(path, Path):
+        _path = path
+    name = _path.name.split("-")[0]
+    code = _path.name.split(".")[0].split("-")[-1]
+    return name, code
+
+
+### Trace Utils
+def get_options(trace_dir: Union[Path, str]):
+    files = defaultdict(None)
+    i = 0
+    for file in Path(trace_dir).iterdir():
+        if file.is_file() and file.with_suffix(".csv"):
+            logger.info(f"{i}: {file.name.rstrip('.csv')}")
+            files[i] = file
+            i += 1
+    try:
+        an = int(input("choose your file:"))
+        if isinstance(an, int):
+            return files[an]
+        else:
+            raise ValueError("Invalid input")
+    except ValueError:
+        raise ValueError("Invalid input")
+
+
+def write_data(file_path: Union[Path, str]):
+    path = Path(file_path)
+    df = pd.read_csv(path, index_col=0)
+    logger.info(f"last buy operation: {df[df['operation']=='buy'].iloc[-1].values}")
+    buy_sell = input("buy or sell(0 or 1)")
+    if buy_sell == "1":
+        buy_sell = "sell"
+    else:
+        buy_sell = "buy"
+    value = input("value:")
+    new_df = pd.DataFrame(
+        {
+            "date": [datetime.now().strftime("%Y-%m-%d")],
+            "operation": [buy_sell],
+            "quantity": [value],
+        }
+    )
+    df = pd.concat([df, new_df], ignore_index=True)
+    # 修复索引
+    df.reset_index(inplace=True, drop=True)
+    # 写入
+    df.to_csv(path)

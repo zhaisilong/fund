@@ -2,5 +2,5 @@
 
 set -e
 pandoc README.rst -o README.md
-git add -A && git commit -m "$1"
-git push
+# git add -A && git commit -m "$1"
+# git push
