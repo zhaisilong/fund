@@ -12,7 +12,7 @@
 #
 
 import os
-from importlib.metadata import version
+from importlib.metadata import version as pkg_version
 
 # -- Project information -----------------------------------------------------
 
@@ -22,10 +22,11 @@ author = 'Zhai Silong'
 
 # The full version, including alpha/beta/rc tags
 try:
-    release = version("fund")
+    release = pkg_version("fund")
 except Exception:
     release = "0.0.0"
 
+version = release
 language = 'zh_CN'
 
 # -- General configuration ---------------------------------------------------

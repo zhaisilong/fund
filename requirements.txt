@@ -9,6 +9,7 @@ pyyaml
 
 # Shell
 rich
+click
 
 # IDE
 jupyter
