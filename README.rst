@@ -123,7 +123,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 汇添富上证综合指数-470007
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: data/trace/reports/汇添富上证综合指数-470007.txt
+.. include:: data/trace/reports/汇添富上证综合指数A-470007.txt
    :literal:
 
 |470007|
@@ -148,7 +148,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 诺安成长混合-320007
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: data/trace/reports/诺安成长混合-320007.txt
+.. include:: data/trace/reports/诺安成长混合A-320007.txt
    :literal:
 
 |320007|
