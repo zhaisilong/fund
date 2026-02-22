@@ -120,7 +120,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 |161725|
 
 
-汇添富上证综合指数-470007
+汇添富上证综合指数A-470007
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: data/trace/reports/汇添富上证综合指数A-470007.txt
@@ -145,7 +145,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 
 |007464|
 
-诺安成长混合-320007
+诺安成长混合A-320007
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: data/trace/reports/诺安成长混合A-320007.txt
@@ -169,8 +169,8 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 .. |010213| image:: data/trace/imgs/中欧互联网先锋混合A-010213.png
 .. |010110| image:: data/trace/imgs/广发医药健康混合A-010110.png
 .. |161725| image:: data/trace/imgs/招商中证白酒指数(LOF)A-161725.png
-.. |470007| image:: data/trace/imgs/汇添富上证综合指数-470007.png
+.. |470007| image:: data/trace/imgs/汇添富上证综合指数A-470007.png
 .. |000251| image:: data/trace/imgs/工银金融地产混合A-000251.png
 .. |007464| image:: data/trace/imgs/交银创业板50指数A-007464.png
-.. |320007| image:: data/trace/imgs/诺安成长混合-320007.png
+.. |320007| image:: data/trace/imgs/诺安成长混合A-320007.png
 .. |161028| image:: data/trace/imgs/富国中证新能源汽车指数(LOF)A-161028.png
