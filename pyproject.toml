@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fund"
-version = "0.1.0"
+version = "0.2.0"
 description = "Fund"
 readme = "README.md"
 authors = [{ name = "Silong Zhai", email = "zhaisilong@outlook.com" }]
@@ -37,6 +37,7 @@ dependencies = [
     "sphinx_rtd_theme",
     "recommonmark",
     "sphinx-markdown-tables",
+    "prompt_toolkit<3.0.39"
 ]
 
 
