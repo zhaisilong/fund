@@ -21,7 +21,11 @@ copyright = '2022, Zhai Silong'
 author = 'Zhai Silong'
 
 # The full version, including alpha/beta/rc tags
-release = version('fund')
+try:
+    release = version("fund")
+except Exception:
+    release = "0.0.0"
+
 language = 'zh_CN'
 
 # -- General configuration ---------------------------------------------------
