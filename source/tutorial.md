@@ -3,7 +3,7 @@
 ## 基金爬取
 
 ```bash
-python crawl.py
+fund crawl
 ```
 
 信息保存在 `data/funds`
@@ -11,7 +11,7 @@ python crawl.py
 ## 基金分析
 
 ```bash
-python analysis.py
+fund analysis
 ```
 
 - 可以得到基金的走势图
@@ -23,7 +23,7 @@ python analysis.py
 ## 基金跟踪
 
 ```bash
-python track.py
+fund track
 ```
 
 - 你需要根据模板写入你的买入卖出信息到 `data/trace/` 下
@@ -31,10 +31,16 @@ python track.py
 - 可以得到基金跟踪的走势图
 - 以及一些收益分析信息报告
 
+## 基金记录 [CMD 界面交互]
+
+```bash
+fund record
+```
+
 ## 基金预测 [In Comming]
 
 ```bash
-python predict.py
+fund predict
 ```
 
 - 基于 prophet 的机器学习预测
