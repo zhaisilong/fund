@@ -43,7 +43,7 @@ fund crawl  # 爬取基金的信息
 fund analysis  # 基金分析
 fund track  # 基金跟踪，在走势图中打印
 fund record  # 记录你的购买和卖出记录
-fund summary --code_id 010213  # 生成基金 summary /data/
+fund summary --code_id 010213  # 生成基金 summary /data/agent/010213_summary.json
 ```
 
 ## ChatGPT 基金推荐
@@ -67,6 +67,8 @@ You must:
 
 Here is the summary JSON:
 <<<PASTE_JSON_HERE>>>
+
+>>> 请给出定投意见，以及可能的风险和收益。（计划定投 1 年；月预算 1000 元；这是核心仓位）
 ```
 
 文档构建与仓库部署 \~\~\~\~\~\~\~\~
