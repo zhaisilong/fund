@@ -37,10 +37,10 @@ fund track
 fund record
 ```
 
-## 基金预测 [In Comming]
+## agent 基金推荐
 
 ```bash
-fund predict
+fund summary --code_id <code_id>
 ```
 
-- 基于 prophet 的机器学习预测
+- 生成 summary.json（agent.json），用于 chatgpt 基金推荐

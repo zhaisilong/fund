@@ -1,9 +1,6 @@
 from collections import defaultdict
-import execjs
-import pandas as pd
-import requests
-import yaml
 import time
+import yaml
 
 from datetime import datetime
 from pathlib import Path
@@ -29,6 +26,10 @@ def get_fund(fscode: str, parent: str = "."):
     """获取基金数据,写入 csv 文件
     :param code: 基金代码
     """
+    import execjs
+    import requests
+    import pandas as pd
+
     time.sleep(1)  # 防止被反爬虫
     # todo: 检查文件的最新日期
     # for file in os.listdir(parent):
@@ -95,6 +96,8 @@ def get_options(trace_dir: Union[Path, str]):
 
 
 def write_data(file_path: Union[Path, str]):
+    import pandas as pd
+
     path = Path(file_path)
     df = pd.read_csv(path, index_col=0)
     logger.info(f"last buy operation: {df[df['operation']=='buy'].iloc[-1].values}")

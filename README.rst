@@ -3,7 +3,7 @@
 前言
 ----
 
--  基于 Python 的量化投资基金的仓库.
+-  GPT agent 定投基金的仓库.
 -  本仓库所有的信息均不构成投资建议.
 -  如果你对次项目感兴趣,欢迎右上角点赞.
 
@@ -17,7 +17,7 @@
    mamba install pytorch torchvision torchaudio cudatoolkit=11.8 -c pytorch
    pip install -e . -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-安装 `java runtime`
+安装 java runtime
 
 .. code:: bash
 
@@ -28,7 +28,7 @@
     sudo apt install default-jdk nodejs npm
     java -version; node -v; npm -v
 
-安装 `pandoc`
+安装 pandoc
 
 .. code:: bash
 
@@ -38,13 +38,6 @@
 使用
 ----
 
-快速入手
-~~~~~~~~
-
-.. code:: bash
-
-   bash pipeline.sh  # or notebooks/quick_start.ipynb
-
 基本操作
 ~~~~~~~~
 
@@ -52,20 +45,50 @@
 
    fund crawl  # 爬取基金的信息
    fund analysis  # 基金分析
-   fund track  # 基金跟踪，记录你的购买和卖出记录；在走势图中打印
-   # fund predict  # 基金预测 [In Comming]
-   # fund strtegy  # 制定策略 [In Comming]
+   fund track  # 基金跟踪，在走势图中打印
+   fund record  # 记录你的购买和卖出记录
+   fund summary --code_id 010213  # 生成基金 summary /data/agent/010213_summary.json
 
-   # Record your buy and sell information
-   fund record  # CMD interface
+ChatGPT 基金推荐
+~~~~~~~~~~~~~~~~
 
-文档构建
-~~~~~~~~
+已生成的详细 summary 示例：
 
 .. code:: bash
 
+   data/agent/010213_summary.json
+
+推荐提问 prompt（将 JSON 粘贴到末尾）：
+
+.. code:: text
+
+   You are a financial analysis assistant. Use the provided JSON summary to answer questions about this fund.
+   You must:
+   - Explicitly reference the fund’s date/value history and any buy/sell records.
+   - Use technical_values plus track/finance report fields as key signals (from <code_id>_summary.json).
+   - Separate factual observations from recommendations.
+   - State uncertainty and data limits.
+   - Ask up to 3 clarification questions if needed.
+
+   Here is the summary JSON:
+   <<<PASTE_JSON_HERE>>>
+
+   >>> 请给出定投意见，以及可能的风险和收益。（计划定投 1 年；月预算 1000 元；这是核心仓位）
+
+文档构建与仓库部署
+~~~~~~~~
+
+.. code:: bash
+   
+   make clean
    make html
-   make serve
+
+   pushd build/html
+   python -m http.server 8001
+   popd
+
+   # 将 README.rst 转换为 README.md
+   pandoc README.rst -o README.md
 
 Bug
 ~~~~~~~~
@@ -74,7 +97,7 @@ WARNING  matplotlib.font_manager: findfont: Font family 'SimHei' not found.
 
 .. code:: bash
 
-   fund fix_matplotlib
+   python bin/fix_matplotlib.py
    
 跟踪情况
 --------

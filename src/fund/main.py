@@ -5,7 +5,7 @@ from pathlib import Path
 from loguru import logger
 
 from fund.utils import get_config, get_fund, get_options, write_data
-from fund import Fund, Trace, FinanceReporter
+from fund.summary import SummaryOptions, write_summary
 
 
 @click.group()
@@ -36,6 +36,8 @@ def crawl(config_path):
     "--config_path", type=str, default=Path.cwd() / "config.yml", help="基金配置路径"
 )
 def analysis(config_path):
+    from fund import Fund
+
     conf = get_config(config_path)
     analysis_path = conf["analysis_path"]
     fund_path = Path(conf["fund_path"])
@@ -51,6 +53,8 @@ def analysis(config_path):
     "--config_path", type=str, default=Path.cwd() / "config.yml", help="基金配置路径"
 )
 def track(config_path):
+    from fund import Fund, Trace, FinanceReporter
+
     conf = get_config(config_path)
     track_path = conf["track_path"]
     fund_path = Path(conf["fund_path"])
@@ -98,3 +102,31 @@ def record(trace_dir):
             file = get_options(trace_dir)
         except KeyboardInterrupt:
             exit(1)
+
+
+@cli.command()
+@click.option("--code_id", type=str, required=True, help="基金代码")
+@click.option(
+    "--config_path", type=str, default=Path.cwd() / "config.yml", help="基金配置路径"
+)
+@click.option(
+    "--output_dir", type=str, default=Path.cwd() / "data/agent", help="输出路径"
+)
+@click.option(
+    "--include_values",
+    type=bool,
+    default=True,
+    help="是否包含全量 date/value 序列",
+)
+def summary(code_id, config_path, output_dir, include_values):
+    options = SummaryOptions(
+        code_id=code_id,
+        config_path=Path(config_path),
+        funds_dir=Path("data/funds"),
+        trace_dir=Path("data/trace"),
+        analysis_reports_dir=Path("data/analysis/reports"),
+        output_dir=Path(output_dir),
+        include_values=include_values,
+    )
+    summary_path = write_summary(options)
+    logger.info(f"summary saved: {summary_path}")
