@@ -1,3 +1,9 @@
+## 0.5.0 (2026-02-23)
+
+### Feat
+
+- update summary function for chatgpt
+
 ## 0.4.2 (2026-02-22)
 
 ### Fix
