@@ -67,15 +67,34 @@ class Fund:
         df['delta_percent'] = df['delta'] / df.value.shift(periods=1, fill_value=1.) * 100
         df = df.iloc[-240 * 4:]  # 最长展示 4 年,除去交易停止日
         df.reset_index(drop=True, inplace=True)
-        vline_day = [df.date.iloc[-i] for i in [240, 20, 5]]  # 插入三根垂直线 周 月 年,除去双休日
+        
+        # 回看交易日
+        lookbacks = [240, 20, 5]
+        # 只保留 df 长度允许的回看值
+        valid_lookbacks = [i for i in lookbacks if len(df) >= i]
+        # 生成竖线日期
+        vline_day = [df['date'].iloc[-i] for i in valid_lookbacks]
+        
         df.value.quantile([0.3, 0.7])  # 插入两根水平线 0.3 0.7
         hline_value = df.value.quantile([0.3, 0.7]).tolist()
         txt_df = df.iloc[::-20]  # 加入标签 每隔 1 个月
         txt = {'x': txt_df.date.tolist(), 'y': txt_df.value.tolist(),
                'label': txt_df.apply(lambda row: f'{row["delta_percent"]:.2f}%', axis=1).tolist()}
-        base_plot = (ggplot() +
-                     geom_line(aes(x='date', y='value'), size=1, color='blue', data=df) +
-                     geom_vline(xintercept=vline_day, colour=['red', 'orange', 'green'], size=1, data=df) +
+        
+        base_plot = (
+            ggplot() +
+            geom_line(aes(x='date', y='value'), size=1, color='blue', data=df)
+        )
+        # 只有在有可用竖线时才添加
+        if vline_day:
+            colors = ['red', 'orange', 'green'][:len(vline_day)]
+            base_plot = base_plot + geom_vline(
+                xintercept=vline_day,
+                colour=colors,
+                size=1
+            )
+        
+        base_plot = (base_plot +
                      geom_hline(yintercept=hline_value, colour=['black', 'pink'], size=2, data=df) +
                      geom_point(aes(x=txt['x'], y=txt['y']), color='red', size=1) +
                      geom_text(aes(label=txt['label'], x=txt['x'], y=txt['y']), color='black', size=14, ha='left',
